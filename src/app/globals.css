@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif), Georgia, Cambria, serif;
+  --font-cinzel: var(--font-cinzel), serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+
+  --color-wedding-navy: #10243B;
+  --color-wedding-navy-dark: #070D16;
+  --color-wedding-navy-card: #0D1E31;
+  --color-wedding-gold: #C8A569;
+  --color-wedding-gold-light: #E5C388;
+  --color-wedding-gold-dark: #8C6D37;
+  --color-wedding-cream: #F8F5EE;
+  --color-wedding-cream-card: #FAF7F0;
+  --color-wedding-cream-border: #D8C39E;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #070D16;
+  --foreground: #FFFFFF;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Clases de utilidad para el diseño romántico */
+.font-serif-luxury {
+  font-family: var(--font-serif);
+}
+
+.font-cinzel-luxury {
+  font-family: var(--font-cinzel);
+}
+
+/* Efectos de destello y sombras doradas */
+.gold-glow {
+  box-shadow: 0 0 25px rgba(200, 165, 105, 0.25);
+}
+
+.gold-glow-strong {
+  box-shadow: 0 0 40px rgba(200, 165, 105, 0.45);
+}
+
+.gold-text-glow {
+  text-shadow: 0 0 15px rgba(229, 195, 136, 0.35);
+}
+
+/* Marco doble ornamental */
+.ornamental-card {
+  position: relative;
+  border: 1px solid rgba(200, 165, 105, 0.5);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(200, 165, 105, 0.15);
+}
+
+.ornamental-card::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(200, 165, 105, 0.28);
+  border-radius: inherit;
+  pointer-events: none;
 }
