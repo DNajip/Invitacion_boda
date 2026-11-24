@@ -1,16 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import FloralCorner from "@/components/ornaments/floral-corner";
-import GoldenGlyph from "@/components/ornaments/golden-glyph";
-import WaxSeal from "@/components/ornaments/wax-seal";
-import { ChurchIcon, ChampagneIcon, MailboxIcon, SuitAndDressIllustration } from "@/components/ornaments/event-icons";
-import Countdown from "@/components/invitation/countdown";
+import Section00Cover from "@/components/invitation/sections/section-00-cover";
+import Section01Welcome from "@/components/invitation/sections/section-01-welcome";
+import Section02Countdown from "@/components/invitation/sections/section-02-countdown";
 import AudioPlayer, { AudioPlayerRef } from "@/components/invitation/audio-player";
 import RsvpSection from "@/components/invitation/rsvp-section";
 import TableAssignedSection from "@/components/invitation/table-assigned-section";
+import { ChurchIcon, ChampagneIcon, MailboxIcon, SuitAndDressIllustration } from "@/components/ornaments/event-icons";
+import FloralCorner from "@/components/ornaments/floral-corner";
+import GoldenGlyph from "@/components/ornaments/golden-glyph";
 import { InvitationFullData } from "@/types/wedding";
-import { MapPin, ArrowUp, Sparkles } from "lucide-react";
+import { MapPin, ArrowUp } from "lucide-react";
 
 interface Props {
   data: InvitationFullData;
@@ -56,167 +57,29 @@ export default function WeddingCard({ data }: Props) {
 
       <div className="w-full max-w-md mx-auto space-y-8 relative z-10">
         {/* ============================================================================== */}
-        {/* SECCIÓN 00: PORTADA Y SOBRE CERRADO CON DESTINATARIO PERSONALIZADO */}
+        {/* SECCIÓN 00: PORTADA Y SOBRE CERRADO FOTORREALISTA */}
         {/* ============================================================================== */}
-        <section className="relative w-full min-h-[620px] bg-[#0E1A29] border border-[#C8A569]/40 rounded-3xl p-6 sm:p-8 text-center shadow-2xl flex flex-col justify-between overflow-hidden ornamental-card">
-          <FloralCorner position="top-left" className="absolute top-0 left-0" />
-          <FloralCorner position="bottom-right" className="absolute bottom-0 right-0" />
-
-          {/* Encabezado portada */}
-          <div className="pt-4 space-y-2">
-            <p className="text-[11px] uppercase tracking-widest text-[#C8A569] font-medium">
-              NUESTRA BODA
-            </p>
-            <h1 className="text-3xl sm:text-4xl font-serif italic text-white tracking-wide">
-              {groom} & {bride}
-            </h1>
-          </div>
-
-          {/* Sobre con sello de cera 3D */}
-          <div className="my-6 relative flex flex-col items-center justify-center">
-            <div className="w-full max-w-[290px] h-[190px] bg-[#13253B] border border-[#C8A569]/30 rounded-2xl shadow-2xl relative flex items-center justify-center overflow-hidden">
-              {/* Solapa superior en V del sobre */}
-              <div
-                className={`absolute top-0 left-0 right-0 h-[105px] bg-[#172D47] border-b border-[#C8A569]/20 transition-all duration-700 origin-top ${
-                  isOpen ? "-rotate-180 opacity-0" : "rotate-0 opacity-100"
-                }`}
-                style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)" }}
-              />
-              {/* Laterales del sobre */}
-              <div
-                className="absolute inset-0 bg-[#102338]/60"
-                style={{ clipPath: "polygon(0 0, 50% 50%, 0 100%)" }}
-              />
-              <div
-                className="absolute inset-0 bg-[#102338]/60"
-                style={{ clipPath: "polygon(100% 0, 50% 50%, 100% 100%)" }}
-              />
-
-              {/* Sello de cera dorado */}
-              <div
-                onClick={handleOpenInvitation}
-                className="relative z-20 cursor-pointer hover:scale-105 transition transform"
-              >
-                <WaxSeal monogram={monogram} size={82} />
-              </div>
-            </div>
-
-            {/* Tarjeta de destinatario y lugares */}
-            <div className="mt-5 p-3 rounded-xl bg-[#0A1726]/90 border border-[#C8A569]/30 w-full max-w-[290px] shadow-lg">
-              <p className="text-[11px] text-neutral-400 font-medium">Para:</p>
-              <p className="text-base font-serif font-bold text-[#E5C388] truncate">
-                {invitation.recipient_name}
-              </p>
-              <p className="text-[11px] text-emerald-400 font-medium mt-0.5">
-                {invitation.authorized_count}{" "}
-                {invitation.authorized_count === 1 ? "lugar reservado" : "lugares reservados"}
-              </p>
-            </div>
-          </div>
-
-          {/* Botón Abrir Invitación */}
-          <div className="pb-3 space-y-3">
-            <button
-              type="button"
-              onClick={handleOpenInvitation}
-              className="w-full max-w-[260px] mx-auto bg-gradient-to-r from-[#E5C388] via-[#C8A569] to-[#B89456] hover:brightness-110 active:scale-95 text-[#10243B] font-bold py-3 px-6 rounded-full shadow-[0_4px_20px_rgba(200,165,105,0.4)] transition text-sm cursor-pointer flex items-center justify-center gap-2"
-            >
-              <Sparkles className="w-4 h-4" />
-              Abrir Invitación
-            </button>
-
-            <p className="font-serif italic text-xs text-neutral-300">
-              Una historia de amor, un nuevo comienzo.
-            </p>
-            <p className="text-[11px] tracking-widest text-[#C8A569]">
-              19 · 12 · 2026
-            </p>
-          </div>
-        </section>
+        <Section00Cover
+          groom={groom}
+          bride={bride}
+          monogram={monogram}
+          recipientName={invitation.recipient_name}
+          authorizedCount={invitation.authorized_count}
+          onOpen={handleOpenInvitation}
+          isOpen={isOpen}
+        />
 
         {/* ============================================================================== */}
-        {/* SECCIÓN 01: BIENVENIDA Y PRESENTACIÓN DE LOS NOVIOS (FONDO MARFIL/CREMA) */}
+        {/* SECCIÓN 01: BIENVENIDA EDITORIAL */}
         {/* ============================================================================== */}
-        <section
-          ref={welcomeRef}
-          className="relative w-full bg-[#FAF7F0] text-[#10243B] border border-[#D8C39E] rounded-3xl p-6 sm:p-8 text-center shadow-2xl overflow-hidden ornamental-card"
-        >
-          <FloralCorner position="top-left" className="absolute top-0 left-0" />
-          <FloralCorner position="bottom-right" className="absolute bottom-0 right-0" />
-
-          <div className="relative z-10 space-y-4 py-4">
-            <p className="text-[11px] uppercase tracking-widest text-[#8C6D37] font-semibold">
-              CON LA BENDICIÓN DE DIOS
-            </p>
-            <GoldenGlyph />
-
-            <h2 className="text-3xl sm:text-4xl font-serif italic font-bold text-[#10243B]">
-              ¡Nos casamos!
-            </h2>
-
-            <div className="space-y-3 max-w-xs mx-auto text-xs sm:text-sm text-[#2D3A4B] leading-relaxed font-sans font-medium">
-              <p>
-                Hay momentos en la vida que merecen ser compartidos con las personas que más queremos.
-              </p>
-              <p>
-                Con el corazón lleno de amor y alegría, hemos decidido unir nuestras vidas en matrimonio y
-                comenzar juntos un nuevo capítulo de nuestra historia.
-              </p>
-              <p>
-                Nos encantaría que nos acompañaras a celebrar este día tan especial.
-              </p>
-            </div>
-
-            <div className="pt-4">
-              <p className="text-2xl sm:text-3xl font-serif italic font-bold text-[#C8A569]">
-                {groom} & {bride}
-              </p>
-            </div>
-          </div>
-        </section>
+        <div ref={welcomeRef}>
+          <Section01Welcome groom={groom} bride={bride} />
+        </div>
 
         {/* ============================================================================== */}
         {/* SECCIÓN 02: FECHA Y CUENTA REGRESIVA EN TIEMPO REAL */}
         {/* ============================================================================== */}
-        <section className="relative w-full bg-[#0E1A29] border border-[#C8A569]/40 rounded-3xl p-6 sm:p-8 text-center shadow-2xl overflow-hidden ornamental-card">
-          <FloralCorner position="top-left" className="absolute top-0 left-0" />
-          <FloralCorner position="bottom-right" className="absolute bottom-0 right-0" />
-
-          <div className="relative z-10 space-y-4 py-3">
-            <p className="text-[11px] uppercase tracking-widest text-[#C8A569] font-medium">
-              RESERVA ESTA FECHA
-            </p>
-            <GoldenGlyph />
-
-            <div className="space-y-1">
-              <p className="text-base sm:text-lg font-serif italic text-neutral-300">
-                Sábado
-              </p>
-              <p className="text-6xl sm:text-7xl font-serif font-bold text-[#E5C388] leading-none my-1 tracking-tight">
-                19
-              </p>
-              <p className="text-base sm:text-lg font-serif italic text-neutral-300">
-                Diciembre
-              </p>
-              <p className="text-xs tracking-widest text-[#C8A569] font-medium pt-1">
-                2026
-              </p>
-            </div>
-
-            <div className="w-24 h-px bg-[#C8A569]/40 mx-auto my-3" />
-
-            <p className="font-serif italic text-xs text-neutral-300 max-w-xs mx-auto">
-              Cada día estamos más cerca de nuestro para siempre.
-            </p>
-
-            <p className="text-[11px] uppercase tracking-widest text-[#C8A569] font-bold pt-2">
-              FALTAN
-            </p>
-
-            {/* Temporizador dinámico */}
-            <Countdown targetDateString={weddingDateStr} />
-          </div>
-        </section>
+        <Section02Countdown targetDateString={weddingDateStr} />
 
         {/* ============================================================================== */}
         {/* SECCIÓN 03: CEREMONIA RELIGIOSA Y RECEPCIÓN (CON ENLACES GOOGLE MAPS) */}

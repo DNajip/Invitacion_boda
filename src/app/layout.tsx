@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Cinzel, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, Cinzel, Montserrat, Great_Vibes } from "next/font/google";
 import "./globals.css";
+
+const greatVibes = Great_Vibes({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cormorant.variable} ${cinzel.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${greatVibes.variable} ${cormorant.variable} ${cinzel.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>

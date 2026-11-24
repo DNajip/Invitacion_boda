@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
+  --font-script: var(--font-script), cursive;
   --font-serif: var(--font-serif), Georgia, Cambria, serif;
   --font-cinzel: var(--font-cinzel), serif;
   --font-sans: var(--font-sans), system-ui, sans-serif;
@@ -29,12 +30,19 @@ body {
 }
 
 /* Clases de utilidad para el diseño romántico */
-.font-serif-luxury {
-  font-family: var(--font-serif);
+.font-script,
+.font-script-luxury {
+  font-family: var(--font-script), cursive;
 }
 
+.font-serif,
+.font-serif-luxury {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-cinzel,
 .font-cinzel-luxury {
-  font-family: var(--font-cinzel);
+  font-family: var(--font-cinzel), serif;
 }
 
 /* Efectos de destello y sombras doradas */
