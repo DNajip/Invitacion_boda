@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getInvitationData } from "@/app/actions/invitation";
-import { Sparkles, AlertCircle, Heart } from "lucide-react";
+import { AlertCircle, Heart } from "lucide-react";
 
 interface Props {
   params: Promise<{ token: string }>;
@@ -60,7 +60,7 @@ export default async function InvitationPage({ params }: Props) {
     );
   }
 
-  const { invitation, wedding, settings, guests } = data;
+  const { invitation, wedding, settings } = data;
 
   return (
     <div className="min-h-screen bg-[#070D16] text-[#FFFFFF] flex flex-col items-center justify-center p-4 relative overflow-hidden font-sans">

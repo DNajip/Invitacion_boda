@@ -13,8 +13,8 @@ export async function getInvitationData(token: string): Promise<InvitationFullDa
       success: false,
       error: "Token no proporcionado",
       invitation: { id: "", token: "", recipient_name: "", authorized_count: 0 },
-      wedding: {} as any,
-      settings: {} as any,
+      wedding: {} as unknown as InvitationFullData["wedding"],
+      settings: {} as unknown as InvitationFullData["settings"],
       guests: [],
       assigned_table: null,
     };
@@ -30,8 +30,8 @@ export async function getInvitationData(token: string): Promise<InvitationFullDa
       success: false,
       error: data?.error || error?.message || "Invitación no encontrada o inactiva",
       invitation: { id: "", token: "", recipient_name: "", authorized_count: 0 },
-      wedding: {} as any,
-      settings: {} as any,
+      wedding: {} as unknown as InvitationFullData["wedding"],
+      settings: {} as unknown as InvitationFullData["settings"],
       guests: [],
       assigned_table: null,
     };
