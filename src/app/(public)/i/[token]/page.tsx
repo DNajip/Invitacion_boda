@@ -10,11 +10,23 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { token } = await params;
   const data = await getInvitationData(token);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://invitacion-boda-bice.vercel.app";
 
   if (!data.success) {
     return {
+      metadataBase: new URL(siteUrl),
       title: "Invitación de Boda",
       description: "Invitación digital interactiva",
+      openGraph: {
+        images: [
+          {
+            url: "/images/og-wax-seal.png",
+            width: 600,
+            height: 600,
+            alt: "Sello de Cera D&F",
+          },
+        ],
+      },
     };
   }
 
@@ -23,11 +35,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const recipient = data.invitation.recipient_name;
 
   return {
+    metadataBase: new URL(siteUrl),
     title: `Invitación de Boda · ${groom} & ${bride} para ${recipient}`,
     description: `Con alegría te invitamos a celebrar el matrimonio de ${groom} & ${bride}.`,
     openGraph: {
       title: `${groom} & ${bride} - Nuestra Boda`,
       description: `Invitación especial para ${recipient}`,
+      url: `${siteUrl}/i/${token}`,
+      siteName: `Boda ${groom} & ${bride}`,
+      images: [
+        {
+          url: "/images/og-wax-seal.png",
+          width: 600,
+          height: 600,
+          alt: `Sello de Cera ${groom} & ${bride}`,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title: `${groom} & ${bride} - Nuestra Boda`,
+      description: `Invitación especial para ${recipient}`,
+      images: ["/images/og-wax-seal.png"],
+    },
+    icons: {
+      icon: "/icon.png",
+      apple: "/apple-icon.png",
     },
   };
 }
