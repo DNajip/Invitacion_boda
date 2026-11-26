@@ -37,17 +37,24 @@ async function capture() {
   await page.goto(targetUrl, { waitUntil: 'networkidle0', timeout: 30000 });
   await new Promise(r => setTimeout(r, 1000));
 
+  // Capturar portada cerrada primero
+  const coverSec = await page.$('section');
+  if (coverSec) {
+    await coverSec.screenshot({ path: path.join(artifactDir, 'sec-00-cover-closed.png') });
+    console.log('Captured Section 00 (Closed) -> sec-00-cover-closed.png');
+  }
+
   // Abrir la invitación para revelar todas las secciones
   const buttons = await page.$$('button');
   for (const b of buttons) {
     const text = await page.evaluate(el => el.textContent, b);
-    if (text && text.includes('Abrir Invitación')) {
+    if (text && text.toUpperCase().includes('ABRIR INVITACIÓN')) {
       await b.click();
       console.log('Opened invitation successfully.');
       break;
     }
   }
-  await new Promise(r => setTimeout(r, 2200));
+  await new Promise(r => setTimeout(r, 2400));
 
   const sections = await page.$$('section');
   console.log(`Found ${sections.length} sections on the page.`);

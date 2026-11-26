@@ -25,7 +25,6 @@ export default function RsvpSection({
   const [activeGuestId, setActiveGuestId] = useState<string | null>(null);
   const [notification, setNotification] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
-  // Comprobar si la fecha límite expiró
   const isExpired = rsvpDeadlineString ? new Date().getTime() > new Date(rsvpDeadlineString).getTime() : false;
 
   const handleRsvp = (guestId: string, status: "confirmed" | "declined") => {
@@ -74,48 +73,100 @@ export default function RsvpSection({
   };
 
   return (
-    <section className="relative w-full max-w-[440px] mx-auto rounded-[28px] bg-gradient-to-b from-[#081729] via-[#0E2035] to-[#081729] p-4 sm:p-6 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#C8A569]/40 overflow-hidden text-white">
-      {/* Filetes interiores dorados dobles */}
-      <div className="absolute inset-[7px] rounded-[22px] border border-[#C8A569]/30 pointer-events-none z-10" />
-      <div className="absolute inset-[11px] rounded-[18px] border border-[#C8A569]/15 pointer-events-none z-10" />
-
-      {/* Ramillete floral superior esquinero optimizado fuera del área del título */}
-      <div className="absolute -top-6 -right-6 w-24 sm:w-26 h-20 pointer-events-none select-none z-20 scale-x-[-1] opacity-85">
+    <section className="relative w-full max-w-[430px] mx-auto rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-[#08192D] text-center isolate text-white">
+      {/* ============================================================================== */}
+      {/* CAPA 1: FONDO PAPEL AZUL NOCHE TEXTURIZADO                                     */}
+      {/* ============================================================================== */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores y hojas doradas"
-          width={1774}
-          height={887}
-          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
+          src="/images/wedding/redesign/backgrounds/paper-dark-blue.webp"
+          alt="Textura papel azul noche"
+          fill
+          sizes="(max-width: 768px) 100vw, 480px"
+          className="object-cover object-center opacity-95"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08192D]/70 via-transparent to-[#08192D]/90" />
+      </div>
+
+      {/* ============================================================================== */}
+      {/* CAPA 2: MARCO RECTANGULAR DORADO CON ESQUINAS ORNAMENTALES (LIMPIO)           */}
+      {/* ============================================================================== */}
+      <div className="absolute inset-0 pointer-events-none z-10 p-2 sm:p-2.5">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/wedding/redesign/frames/frame-rect-clean-perfect.webp"
+            alt="Marco dorado ornamental"
+            fill
+            className="object-fill"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* ============================================================================== */}
+      {/* CAPA 3: COMPOSICIONES FLORALES INDEPENDIENTES (ESQUINAS TL Y BR)              */}
+      {/* ============================================================================== */}
+      <div className="absolute -top-3 -left-3 w-32 sm:w-38 h-32 sm:h-38 pointer-events-none select-none z-20">
+        <Image
+          src="/images/wedding/redesign/floral/floral-corner-tl.webp"
+          alt="Flores esquina superior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)]"
+          priority
         />
       </div>
 
-      <div className="relative z-10 space-y-2 pt-8 pb-1">
-        <p className="font-cinzel text-[8.5px] sm:text-[9px] tracking-[0.15em] text-[#C8A569] uppercase font-semibold">
-          CONFIRMACIÓN DE ASISTENCIA
-        </p>
+      <div className="absolute -bottom-3 -right-3 w-32 sm:w-38 h-32 sm:h-38 pointer-events-none select-none z-20">
+        <Image
+          src="/images/wedding/redesign/floral/floral-corner-br.webp"
+          alt="Flores esquina inferior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)]"
+        />
+      </div>
 
-        {/* Sello de cera dorado ornamental compacto */}
-        <div className="w-8 h-8 sm:w-9 sm:h-9 mx-auto relative drop-shadow-md">
+      {/* ============================================================================== */}
+      {/* CAPA 4: CONTENIDO INTERACTIVO RSVP                                             */}
+      {/* ============================================================================== */}
+      <div className="relative z-30 flex flex-col items-center px-6 sm:px-8 pt-20 sm:pt-24 pb-20 sm:pb-24 text-center space-y-3.5 max-w-[320px] mx-auto">
+        {/* Sello de cera dorado ornamental */}
+        <div className="w-10 h-10 mx-auto relative drop-shadow-[0_4px_10px_rgba(200,165,105,0.4)]">
           <Image
             src="/assets/templates/romantic-garden/wax-seal.webp"
             alt="Sello de cera D&F"
             fill
-            sizes="36px"
+            sizes="40px"
             className="object-contain"
           />
         </div>
 
-        <h2 className="font-serif italic font-normal text-2xl sm:text-3xl text-white tracking-wide leading-tight drop-shadow-md">
+        <p className="font-cinzel text-[10px] sm:text-[10.5px] tracking-[0.28em] text-[#C8A569] uppercase font-bold">
+          CONFIRMACIÓN DE ASISTENCIA
+        </p>
+
+        <h2 className="font-serif italic font-normal text-3xl sm:text-4xl text-white tracking-wide leading-tight drop-shadow-md">
           ¿Nos Acompañarás?
         </h2>
 
-        <p className="font-serif italic text-[11.5px] sm:text-xs text-[#E1D3BF] max-w-xs mx-auto leading-snug">
+        {/* Separador con rombo */}
+        <div className="w-24 h-1.5 mx-auto relative opacity-75">
+          <Image
+            src="/images/wedding/redesign/ornaments/separator-gold-diamond.webp"
+            alt="Separador dorado"
+            fill
+            className="object-contain"
+          />
+        </div>
+
+        <p className="font-serif italic text-xs sm:text-[12.5px] text-[#E1D3BF] max-w-xs mx-auto leading-relaxed">
           Por favor confirma la asistencia de cada una de las personas autorizadas en tu invitación.
         </p>
 
         {rsvpDeadlineString && (
-          <p className="font-cinzel text-[9px] text-[#E5C388] font-semibold tracking-wider">
+          <p className="font-cinzel text-[9.5px] text-[#E5C388] font-bold tracking-widest pt-0.5">
             FECHA LÍMITE:{" "}
             {new Date(rsvpDeadlineString).toLocaleDateString("es-ES", {
               day: "numeric",
@@ -127,10 +178,10 @@ export default function RsvpSection({
 
         {notification && (
           <div
-            className={`p-2 rounded-xl text-xs flex items-center justify-center gap-2 ${
+            className={`p-2.5 rounded-xl text-xs flex items-center justify-center gap-2 w-full max-w-xs mx-auto shadow-md ${
               notification.type === "success"
-                ? "bg-emerald-950/80 border border-emerald-500/40 text-emerald-200"
-                : "bg-red-950/80 border border-red-500/40 text-red-200"
+                ? "bg-emerald-950/85 border border-emerald-500/50 text-emerald-200"
+                : "bg-red-950/85 border border-red-500/50 text-red-200"
             }`}
           >
             {notification.type === "success" ? (
@@ -142,8 +193,8 @@ export default function RsvpSection({
           </div>
         )}
 
-        {/* Lista de personas autorizadas optimizada en altura y espaciado */}
-        <div className="space-y-2 pt-0.5">
+        {/* Lista de personas autorizadas */}
+        <div className="space-y-2.5 pt-1 w-full max-w-[320px] mx-auto">
           {guests.map((guest) => {
             const isConfirmed = guest.rsvp_status === "confirmed";
             const isDeclined = guest.rsvp_status === "declined";
@@ -152,36 +203,34 @@ export default function RsvpSection({
             return (
               <div
                 key={guest.id}
-                className="bg-[#0A1D33]/90 border border-[#C8A569]/35 rounded-xl p-2.5 sm:p-3 text-left shadow-md space-y-2 backdrop-blur-sm"
+                className="bg-[#0A1D33]/90 border border-[#C8A569]/40 rounded-2xl p-3 sm:p-3.5 text-left shadow-[0_4px_16px_rgba(0,0,0,0.5)] space-y-2.5 backdrop-blur-sm"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-serif font-bold text-sm sm:text-base text-white">
-                      {guest.full_name}
-                    </h3>
-                    <p className="font-cinzel text-[9px] text-[#C8A569] tracking-wider">
-                      ESTADO:{" "}
-                      {isConfirmed ? (
-                        <span className="text-emerald-400 font-bold">CONFIRMADO</span>
-                      ) : isDeclined ? (
-                        <span className="text-red-400 font-bold">NO ASISTIRÁ</span>
-                      ) : (
-                        <span className="text-amber-300 font-semibold">PENDIENTE</span>
-                      )}
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="font-serif font-bold text-base text-white">
+                    {guest.full_name}
+                  </h3>
+                  <p className="font-cinzel text-[9px] text-[#C8A569] tracking-wider mt-0.5">
+                    ESTADO:{" "}
+                    {isConfirmed ? (
+                      <span className="text-emerald-400 font-bold">CONFIRMADO</span>
+                    ) : isDeclined ? (
+                      <span className="text-red-400 font-bold">NO ASISTIRÁ</span>
+                    ) : (
+                      <span className="text-amber-300 font-semibold">PENDIENTE</span>
+                    )}
+                  </p>
                 </div>
 
-                {/* Botones de Confirmar / Rechazar compactos */}
+                {/* Botones de Confirmar / Declinar */}
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     disabled={isThisLoading || (!allowUpdates && isConfirmed)}
                     onClick={() => handleRsvp(guest.id, "confirmed")}
-                    className={`py-1.5 px-2.5 rounded-lg text-[10.5px] font-cinzel font-semibold tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
+                    className={`py-2 px-3 rounded-xl text-[10.5px] sm:text-[11px] font-cinzel font-semibold tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
                       isConfirmed
-                        ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-md shadow-emerald-900/50"
-                        : "bg-[#0A1726] border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/40"
+                        ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-md shadow-emerald-900/50 border border-emerald-400"
+                        : "bg-[#0A1726] border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/50 active:scale-95"
                     }`}
                   >
                     {isThisLoading ? (
@@ -189,21 +238,21 @@ export default function RsvpSection({
                     ) : (
                       <Check className="w-3.5 h-3.5" />
                     )}
-                    {isConfirmed ? "ASISTIRÉ" : "CONFIRMAR"}
+                    {isConfirmed ? "ASISTIRÉ" : "ASISTIRÉ"}
                   </button>
 
                   <button
                     type="button"
                     disabled={isThisLoading || (!allowUpdates && isDeclined)}
                     onClick={() => handleRsvp(guest.id, "declined")}
-                    className={`py-1.5 px-2.5 rounded-lg text-[10.5px] font-cinzel font-semibold tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
+                    className={`py-2 px-3 rounded-xl text-[10.5px] sm:text-[11px] font-cinzel font-semibold tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
                       isDeclined
-                        ? "bg-gradient-to-r from-red-700 to-red-800 text-white shadow-md shadow-red-900/50"
-                        : "bg-[#0A1726] border border-red-500/40 text-red-300 hover:bg-red-950/40"
+                        ? "bg-gradient-to-r from-red-700 to-red-800 text-white shadow-md shadow-red-900/50 border border-red-400"
+                        : "bg-[#0A1726] border border-red-500/40 text-red-300 hover:bg-red-950/50 active:scale-95"
                     }`}
                   >
                     <X className="w-3.5 h-3.5" />
-                    {isDeclined ? "NO ASISTIRÉ" : "DECLINAR"}
+                    {isDeclined ? "DECLINADO" : "DECLINAR"}
                   </button>
                 </div>
               </div>

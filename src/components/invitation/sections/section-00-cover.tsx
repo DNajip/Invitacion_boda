@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Sparkles, Users } from "lucide-react";
-
 import Envelope3D from "@/components/invitation/envelope-3d";
 
 interface Props {
@@ -25,88 +24,100 @@ export default function Section00Cover({
   isOpen,
 }: Props) {
   return (
-    <section className="relative w-full max-w-[420px] mx-auto min-h-[min(720px,94dvh)] sm:min-h-[740px] rounded-t-[140px] rounded-b-[36px] overflow-hidden shadow-2xl border border-[#C8A569]/50 flex flex-col justify-between p-5 sm:p-8 text-center select-none bg-[#08192D]">
-      {/* CAPA 1: Fondo de Jardín Nocturno Fotorrealista */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative w-full max-w-[430px] mx-auto min-h-[min(740px,96dvh)] sm:min-h-[760px] rounded-t-[140px] rounded-b-[36px] overflow-hidden shadow-2xl flex flex-col justify-between p-4 sm:p-7 text-center select-none bg-[#08192D] isolate">
+      {/* ============================================================================== */}
+      {/* CAPA 1: Fondo de Papel Azul Noche Texturizado Premium                          */}
+      {/* ============================================================================== */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
-          src="/assets/templates/romantic-garden/night-garden-bg.webp"
-          alt="Fondo de jardín nocturno"
+          src="/images/wedding/redesign/backgrounds/paper-dark-blue.webp"
+          alt="Textura papel azul noche"
           fill
           sizes="(max-width: 768px) 100vw, 480px"
-          className="object-cover object-center opacity-40 mix-blend-luminosity scale-105"
+          className="object-cover object-center opacity-95"
           priority
         />
-        {/* Degradado profundo azul noche y viñeta ambiental */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#08192D]/90 via-[#0A1D33]/70 to-[#08192D]/95" />
+        {/* Sutil profundidad de jardín nocturno */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08192D]/70 via-transparent to-[#08192D]/90" />
       </div>
 
-      {/* CAPA 2 & 3: Marco Ornamental en Arco Dorado Doble */}
-      <div className="absolute inset-[8px] rounded-t-[132px] rounded-b-[28px] border border-[#C8A569]/35 pointer-events-none z-10" />
-      <div className="absolute inset-[13px] rounded-t-[127px] rounded-b-[23px] border border-[#C8A569]/15 pointer-events-none z-10" />
+      {/* ============================================================================== */}
+      {/* CAPA 2: Marco Ornamental Dorado en Arco con Flores Nupciales                    */}
+      {/* ============================================================================== */}
+      <div className="absolute inset-0 pointer-events-none z-10 p-2 sm:p-2.5">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/wedding/redesign/frames/frame-arch-gold.webp"
+            alt="Marco dorado ornamental con flores"
+            fill
+            className="object-fill"
+            priority
+          />
+        </div>
+      </div>
 
-      {/* CAPA 4: Composiciones Florales Blancas y Hojas de Oro Fotorrealistas (Esquina Superior Izquierda) */}
-      <div className="absolute -top-6 -left-8 w-48 sm:w-56 h-36 sm:h-44 pointer-events-none z-20">
+      {/* ============================================================================== */}
+      {/* CAPA 3: Destello de Luz Dorada y Elementos Ambientales                          */}
+      {/* ============================================================================== */}
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-48 h-12 pointer-events-none z-15 opacity-60">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores blancas y hojas doradas"
-          width={1774}
-          height={887}
-          className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)]"
-          priority
+          src="/images/wedding/redesign/effects/sparkle-gold-soft.webp"
+          alt="Destello dorado"
+          fill
+          className="object-contain"
         />
       </div>
 
-      {/* Ramillete Floral Inferior Derecho */}
-      <div className="absolute -bottom-8 -right-8 w-44 sm:w-52 h-32 sm:h-40 pointer-events-none z-20 scale-x-[-1]">
-        <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores blancas y hojas doradas"
-          width={1774}
-          height={887}
-          className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)]"
-        />
-      </div>
-
-      {/* CAPA 8: Alianzas Matrimoniales de Oro en la Base Derecha */}
-      <div className="absolute bottom-6 right-6 w-18 sm:w-20 h-12 sm:h-14 pointer-events-none z-30">
+      {/* Alianzas de oro superpuestas en esquina inferior derecha sobre las flores del marco */}
+      <div className="absolute bottom-6 right-6 w-16 sm:w-20 h-12 sm:h-14 pointer-events-none z-25">
         <Image
           src="/assets/templates/romantic-garden/wedding-rings.webp"
-          alt="Alianzas de matrimonio doradas"
-          width={1536}
-          height={1024}
-          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]"
+          alt="Alianzas de oro"
+          fill
+          className="object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]"
         />
       </div>
 
-      {/* CAPA 6: Cabecera con Monograma en Arco y Nombres de los Novios */}
-      <div className="relative z-20 pt-7 space-y-1">
-        {/* Monograma D y F dentro de arco fino dorado (botón interactivo para abrir) */}
+      {/* ============================================================================== */}
+      {/* CAPA 4: Contenido y Botones Interactivos                                       */}
+      {/* ============================================================================== */}
+      <div className="relative z-30 pt-8 sm:pt-10 space-y-1">
+        {/* Monograma DyF dentro de arco dorado con corazón */}
         <button
           type="button"
           onClick={!isOpen ? onOpen : undefined}
           disabled={isOpen}
-          aria-label="Botón D y F - Toca para abrir la invitación"
+          aria-label="Botón DyF - Toca para abrir la invitación"
           title="Toca para abrir la invitación"
-          className={`w-14 h-16 mx-auto border border-[#C8A569]/70 rounded-t-full flex items-center justify-center p-1 mb-2 bg-[#08192D]/70 backdrop-blur-sm shadow-[0_2px_8px_rgba(0,0,0,0.5)] transition-all ${
-            !isOpen ? "hover:scale-105 active:scale-95 cursor-pointer hover:border-[#E5C388] animate-pulse" : "cursor-default"
+          className={`w-14 h-16 mx-auto border-2 border-[#C8A569]/80 rounded-t-full flex flex-col items-center justify-center p-1 mb-1.5 bg-[#08192D]/80 backdrop-blur-sm shadow-[0_4px_15px_rgba(0,0,0,0.6)] transition-all ${
+            !isOpen
+              ? "hover:scale-105 active:scale-95 cursor-pointer hover:border-[#E5C388] animate-pulse"
+              : "cursor-default border-[#C8A569]/50"
           }`}
         >
           <span className="font-serif italic font-bold text-base tracking-widest text-[#E5C388] drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
             {monogram.replace("&", " y ")}
           </span>
+          <span className="text-[10px] text-[#C8A569] leading-none -mt-0.5">♡</span>
         </button>
 
-        <p className="font-cinzel text-[10.5px] sm:text-[11px] tracking-[0.28em] text-[#C8A569] uppercase font-semibold">
-          NUESTRA BODA
-        </p>
+        {/* Separador ornamental superior */}
+        <div className="w-20 h-1 mx-auto relative opacity-70">
+          <Image
+            src="/images/wedding/redesign/ornaments/separator-gold-diamond.webp"
+            alt="Separador ornamental"
+            fill
+            className="object-contain"
+          />
+        </div>
 
-        <h1 className="font-serif italic font-normal text-4xl sm:text-5xl text-white tracking-wide pt-1 leading-tight drop-shadow-[0_2px_12px_rgba(200,165,105,0.4)]">
-          {groom} y {bride}
-        </h1>
+        <p className="font-cinzel text-[9.5px] sm:text-[10px] tracking-[0.24em] text-[#E5C388] uppercase font-semibold drop-shadow-sm">
+          N U E S T R A &nbsp; B O D A
+        </p>
       </div>
 
-      {/* CAPA 5: Sobre Multicapa Fotorrealista en 3D Interactivo */}
-      <div className="relative z-20 my-2 flex flex-col items-center justify-center">
+      {/* Sobre Multicapa 3D Interactivo */}
+      <div className="relative z-30 my-1 flex flex-col items-center justify-center">
         <Envelope3D
           isOpen={isOpen}
           onOpen={onOpen}
@@ -115,15 +126,37 @@ export default function Section00Cover({
           monogram={monogram}
         />
 
-        {/* Dedicatoria Nupcial Integrada */}
-        <div className="mt-3.5 space-y-1 text-center">
-          <p className="font-serif italic text-xs text-neutral-300/80 font-light tracking-wide">
+        {/* Dedicatoria Nupcial para el Invitado */}
+        <div className="mt-3 space-y-1 text-center max-w-[320px] mx-auto">
+          <p className="font-serif italic text-xs text-[#E5C388]/90 font-light tracking-wide">
             Para:
           </p>
-          <p className="font-serif text-2xl sm:text-[26px] font-bold text-[#E5C388] tracking-wide leading-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-            {recipientName}
-          </p>
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#08192D]/70 border border-[#C8A569]/30 text-[11px] text-[#C8A569] font-medium backdrop-blur-sm">
+
+          {/* Nombre del invitado flanqueado por delicadas ramas doradas */}
+          <div className="flex items-center justify-center gap-1.5 px-2">
+            <span className="w-6 h-3 relative opacity-80">
+              <Image
+                src="/images/wedding/redesign/ornaments/branches-gold-symmetric.webp"
+                alt="Laurel izquierdo"
+                fill
+                className="object-contain"
+              />
+            </span>
+            <p className="font-serif italic text-2xl sm:text-[25px] font-normal text-white tracking-wide leading-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
+              {recipientName}
+            </p>
+            <span className="w-6 h-3 relative opacity-80 scale-x-[-1]">
+              <Image
+                src="/images/wedding/redesign/ornaments/branches-gold-symmetric.webp"
+                alt="Laurel derecho"
+                fill
+                className="object-contain"
+              />
+            </span>
+          </div>
+
+          {/* Píldora de lugares autorizados con borde dorado */}
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-0.5 rounded-full bg-[#08192D]/85 border border-[#C8A569]/50 text-[11px] text-[#E5C388] font-medium backdrop-blur-md shadow-inner mt-0.5">
             <Users className="w-3 h-3 text-[#E5C388]" />
             <span>
               {authorizedCount} {authorizedCount === 1 ? "lugar reservado" : "lugares reservados"}
@@ -132,26 +165,31 @@ export default function Section00Cover({
         </div>
       </div>
 
-      {/* CAPA 7: Botón "Abrir Invitación >" Satinado y Fecha */}
-      <div className="relative z-20 pb-8 sm:pb-12 space-y-2 -translate-y-1">
+      {/* Fecha y Botón Satinado "INVITACIÓN ABIERTA / ABRIR INVITACIÓN" */}
+      <div className="relative z-30 pb-12 sm:pb-14 space-y-2.5">
+        {/* Separador y Fecha */}
+        <div className="flex items-center justify-center gap-2">
+          <span className="w-5 h-0.5 bg-[#C8A569]/40" />
+          <p className="font-cinzel text-[11px] sm:text-xs tracking-[0.28em] text-[#E5C388] font-semibold">
+            19 · 12 · 2026
+          </p>
+          <span className="w-5 h-0.5 bg-[#C8A569]/40" />
+        </div>
+
         <button
           type="button"
           onClick={onOpen}
           disabled={isOpen}
           aria-label="Abrir Invitación"
-          className={`w-full max-w-[245px] mx-auto py-3 px-6 rounded-full font-bold transition-all duration-300 text-xs sm:text-[13px] tracking-wider uppercase font-cinzel flex items-center justify-center gap-2 ${
+          className={`w-full max-w-[265px] mx-auto py-3 px-6 rounded-full font-bold transition-all duration-300 text-xs sm:text-[12.5px] tracking-wider uppercase font-cinzel flex items-center justify-center gap-2 border-2 ${
             isOpen
-              ? "bg-[#0A1D33] border border-[#C8A569]/60 text-[#E5C388] shadow-[0_2px_15px_rgba(200,165,105,0.2)] cursor-default"
-              : "bg-gradient-to-r from-[#F0D5A5] via-[#C8A569] to-[#99763D] hover:brightness-110 active:scale-95 text-[#08192D] shadow-[0_4px_25px_rgba(200,165,105,0.45)] cursor-pointer"
+              ? "bg-[#0A1D33] border-[#C8A569] text-[#E5C388] shadow-[0_2px_15px_rgba(200,165,105,0.3)] cursor-default"
+              : "bg-gradient-to-r from-[#F0D5A5] via-[#C8A569] to-[#99763D] border-[#F0D5A5] hover:brightness-110 active:scale-95 text-[#08192D] shadow-[0_4px_25px_rgba(200,165,105,0.5)] cursor-pointer"
           }`}
         >
           <Sparkles className={`w-4 h-4 ${isOpen ? "text-[#E5C388]" : "text-[#08192D]"}`} />
-          {isOpen ? "Invitación Abierta" : "Abrir Invitación >"}
+          {isOpen ? "INVITACIÓN ABIERTA" : "ABRIR INVITACIÓN >"}
         </button>
-
-        <p className="font-cinzel text-xs tracking-[0.28em] text-[#C8A569] pt-1">
-          19 · 12 · 2026
-        </p>
       </div>
     </section>
   );
