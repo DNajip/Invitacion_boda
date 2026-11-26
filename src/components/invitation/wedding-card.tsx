@@ -75,7 +75,7 @@ export default function WeddingCard({ data }: Props) {
   return (
     <div className={`min-h-screen bg-[#070D16] text-white flex flex-col items-center px-3 sm:px-4 relative font-sans selection:bg-[#C8A569] selection:text-[#10243B] ${isOpen ? "py-6" : "py-2 sm:py-6 justify-center"}`}>
       {/* Música ambiental con control flotante */}
-      <AudioPlayer ref={audioPlayerRef} audioSrc={settings.music_url || "/audio/ambient-romance.wav"} />
+      <AudioPlayer ref={audioPlayerRef} audioSrc={settings.music_url || "/audio/a-thousand-years.mp3"} />
 
       {/* Partículas de polvo de oro y destellos ambientales a 60 FPS */}
       <AmbientStardust />
