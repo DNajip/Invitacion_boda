@@ -10,7 +10,9 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { token } = await params;
   const data = await getInvitationData(token);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://invitacion-boda-bice.vercel.app";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://invitacion-boda-bice.vercel.app");
 
   if (!data.success) {
     return {

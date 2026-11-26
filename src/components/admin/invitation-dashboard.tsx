@@ -90,9 +90,18 @@ export default function InvitationDashboard({
     });
   }
 
+  // Obtener la URL base activa de forma dinámica
+  function getActiveBaseUrl() {
+    if (typeof window !== "undefined" && window.location.origin) {
+      return window.location.origin;
+    }
+    return siteUrl;
+  }
+
   // Copiar enlace al portapapeles
   function handleCopyLink(token: string) {
-    const url = `${siteUrl}/i/${token}`;
+    const baseUrl = getActiveBaseUrl();
+    const url = `${baseUrl}/i/${token}`;
     navigator.clipboard.writeText(url);
     setCopiedToken(token);
     setTimeout(() => setCopiedToken(null), 2500);
@@ -100,7 +109,8 @@ export default function InvitationDashboard({
 
   // Compartir por WhatsApp
   function handleShareWhatsApp(inv: Invitation) {
-    const url = `${siteUrl}/i/${inv.token}`;
+    const baseUrl = getActiveBaseUrl();
+    const url = `${baseUrl}/i/${inv.token}`;
     const template =
       settings?.whatsapp_template ||
       "¡Hola {destinatario}! Con mucha emoción te compartimos nuestra invitación a nuestra boda: {enlace}";
