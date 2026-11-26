@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Image from "next/image";
 import confetti from "canvas-confetti";
 import { submitRsvp } from "@/app/actions/invitation";
 import { GuestWithRsvp } from "@/types/wedding";
-import FloralCorner from "@/components/ornaments/floral-corner";
-import GoldenGlyph from "@/components/ornaments/golden-glyph";
 import { Check, X, Loader2, Sparkles, AlertCircle } from "lucide-react";
 
 interface Props {
@@ -22,7 +21,6 @@ export default function RsvpSection({
   allowUpdates = true,
 }: Props) {
   const [guests, setGuests] = useState<GuestWithRsvp[]>(initialGuests);
-  const [dietaryNotes, setDietaryNotes] = useState<{ [guestId: string]: string }>({});
   const [isPending, startTransition] = useTransition();
   const [activeGuestId, setActiveGuestId] = useState<string | null>(null);
   const [notification, setNotification] = useState<{ type: "success" | "error"; text: string } | null>(null);
@@ -43,18 +41,16 @@ export default function RsvpSection({
     setNotification(null);
 
     startTransition(async () => {
-      const notes = dietaryNotes[guestId] || "";
-      const res = await submitRsvp(token, guestId, status, notes);
+      const res = await submitRsvp(token, guestId, status, "");
 
       if (res.success) {
         setGuests((prev) =>
           prev.map((g) =>
-            g.id === guestId ? { ...g, rsvp_status: status, dietary_notes: notes } : g
+            g.id === guestId ? { ...g, rsvp_status: status } : g
           )
         );
 
         if (status === "confirmed") {
-          // Celebración visual con confeti dorado
           confetti({
             particleCount: 80,
             spread: 70,
@@ -78,38 +74,60 @@ export default function RsvpSection({
   };
 
   return (
-    <section className="relative w-full max-w-md mx-auto my-6 bg-[#0E1A29] border border-[#C8A569]/30 rounded-3xl p-6 sm:p-8 text-center shadow-2xl overflow-hidden ornamental-card">
-      <FloralCorner position="top-left" className="absolute top-0 left-0" />
-      <FloralCorner position="bottom-right" className="absolute bottom-0 right-0" />
+    <section className="relative w-full max-w-[440px] mx-auto rounded-[28px] bg-gradient-to-b from-[#081729] via-[#0E2035] to-[#081729] p-4 sm:p-6 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#C8A569]/40 overflow-hidden text-white">
+      {/* Filetes interiores dorados dobles */}
+      <div className="absolute inset-[7px] rounded-[22px] border border-[#C8A569]/30 pointer-events-none z-10" />
+      <div className="absolute inset-[11px] rounded-[18px] border border-[#C8A569]/15 pointer-events-none z-10" />
 
-      <div className="relative z-10 space-y-4">
-        <p className="text-[11px] uppercase tracking-widest text-[#C8A569] font-medium">
+      {/* Ramillete floral superior esquinero optimizado fuera del área del título */}
+      <div className="absolute -top-6 -right-6 w-24 sm:w-26 h-20 pointer-events-none select-none z-20 scale-x-[-1] opacity-85">
+        <Image
+          src="/assets/templates/romantic-garden/floral-composition.webp"
+          alt="Flores y hojas doradas"
+          width={1774}
+          height={887}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
+        />
+      </div>
+
+      <div className="relative z-10 space-y-2 pt-8 pb-1">
+        <p className="font-cinzel text-[8.5px] sm:text-[9px] tracking-[0.15em] text-[#C8A569] uppercase font-semibold">
           CONFIRMACIÓN DE ASISTENCIA
         </p>
-        <GoldenGlyph />
 
-        <h2 className="text-2xl sm:text-3xl font-serif italic text-white leading-tight">
+        {/* Sello de cera dorado ornamental compacto */}
+        <div className="w-8 h-8 sm:w-9 sm:h-9 mx-auto relative drop-shadow-md">
+          <Image
+            src="/assets/templates/romantic-garden/wax-seal.webp"
+            alt="Sello de cera D&F"
+            fill
+            sizes="36px"
+            className="object-contain"
+          />
+        </div>
+
+        <h2 className="font-serif italic font-normal text-2xl sm:text-3xl text-white tracking-wide leading-tight drop-shadow-md">
           ¿Nos Acompañarás?
         </h2>
 
-        <p className="text-xs text-neutral-300 max-w-xs mx-auto leading-relaxed">
+        <p className="font-serif italic text-[11.5px] sm:text-xs text-[#E1D3BF] max-w-xs mx-auto leading-snug">
           Por favor confirma la asistencia de cada una de las personas autorizadas en tu invitación.
         </p>
 
         {rsvpDeadlineString && (
-          <p className="text-[11px] text-[#E5C388] font-medium">
-            Fecha límite de confirmación:{" "}
+          <p className="font-cinzel text-[9px] text-[#E5C388] font-semibold tracking-wider">
+            FECHA LÍMITE:{" "}
             {new Date(rsvpDeadlineString).toLocaleDateString("es-ES", {
               day: "numeric",
               month: "long",
               year: "numeric",
-            })}
+            }).toUpperCase()}
           </p>
         )}
 
         {notification && (
           <div
-            className={`p-3 rounded-xl text-xs flex items-center justify-center gap-2 ${
+            className={`p-2 rounded-xl text-xs flex items-center justify-center gap-2 ${
               notification.type === "success"
                 ? "bg-emerald-950/80 border border-emerald-500/40 text-emerald-200"
                 : "bg-red-950/80 border border-red-500/40 text-red-200"
@@ -124,8 +142,8 @@ export default function RsvpSection({
           </div>
         )}
 
-        {/* Lista de personas autorizadas */}
-        <div className="space-y-4 pt-2">
+        {/* Lista de personas autorizadas optimizada en altura y espaciado */}
+        <div className="space-y-2 pt-0.5">
           {guests.map((guest) => {
             const isConfirmed = guest.rsvp_status === "confirmed";
             const isDeclined = guest.rsvp_status === "declined";
@@ -134,36 +152,36 @@ export default function RsvpSection({
             return (
               <div
                 key={guest.id}
-                className="bg-[#10243B]/90 border border-[#C8A569]/25 rounded-2xl p-4 text-left shadow-lg space-y-3"
+                className="bg-[#0A1D33]/90 border border-[#C8A569]/35 rounded-xl p-2.5 sm:p-3 text-left shadow-md space-y-2 backdrop-blur-sm"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-semibold text-white">
+                    <h3 className="font-serif font-bold text-sm sm:text-base text-white">
                       {guest.full_name}
                     </h3>
-                    <p className="text-[11px] text-neutral-400 mt-0.5">
-                      Estado:{" "}
+                    <p className="font-cinzel text-[9px] text-[#C8A569] tracking-wider">
+                      ESTADO:{" "}
                       {isConfirmed ? (
-                        <span className="text-emerald-400 font-semibold">Confirmado</span>
+                        <span className="text-emerald-400 font-bold">CONFIRMADO</span>
                       ) : isDeclined ? (
-                        <span className="text-red-400 font-semibold">No asistirá</span>
+                        <span className="text-red-400 font-bold">NO ASISTIRÁ</span>
                       ) : (
-                        <span className="text-amber-300 font-medium">Pendiente</span>
+                        <span className="text-amber-300 font-semibold">PENDIENTE</span>
                       )}
                     </p>
                   </div>
                 </div>
 
-                {/* Botones de Confirmar / Rechazar */}
+                {/* Botones de Confirmar / Rechazar compactos */}
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     disabled={isThisLoading || (!allowUpdates && isConfirmed)}
                     onClick={() => handleRsvp(guest.id, "confirmed")}
-                    className={`py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
+                    className={`py-1.5 px-2.5 rounded-lg text-[10.5px] font-cinzel font-semibold tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
                       isConfirmed
-                        ? "bg-emerald-600 text-white shadow-lg shadow-emerald-900/40"
-                        : "bg-[#0A1726] border border-emerald-500/30 text-emerald-300 hover:bg-emerald-950/30"
+                        ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-md shadow-emerald-900/50"
+                        : "bg-[#0A1726] border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950/40"
                     }`}
                   >
                     {isThisLoading ? (
@@ -171,34 +189,23 @@ export default function RsvpSection({
                     ) : (
                       <Check className="w-3.5 h-3.5" />
                     )}
-                    {isConfirmed ? "Asistiré" : "Confirmar"}
+                    {isConfirmed ? "ASISTIRÉ" : "CONFIRMAR"}
                   </button>
 
                   <button
                     type="button"
                     disabled={isThisLoading || (!allowUpdates && isDeclined)}
                     onClick={() => handleRsvp(guest.id, "declined")}
-                    className={`py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
+                    className={`py-1.5 px-2.5 rounded-lg text-[10.5px] font-cinzel font-semibold tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer disabled:opacity-50 ${
                       isDeclined
-                        ? "bg-red-700 text-white shadow-lg shadow-red-900/40"
-                        : "bg-[#0A1726] border border-red-500/30 text-red-300 hover:bg-red-950/30"
+                        ? "bg-gradient-to-r from-red-700 to-red-800 text-white shadow-md shadow-red-900/50"
+                        : "bg-[#0A1726] border border-red-500/40 text-red-300 hover:bg-red-950/40"
                     }`}
                   >
                     <X className="w-3.5 h-3.5" />
-                    {isDeclined ? "No asistiré" : "No podré"}
+                    {isDeclined ? "NO ASISTIRÉ" : "DECLINAR"}
                   </button>
                 </div>
-
-                {/* Restricciones alimentarias opcionales */}
-                <input
-                  type="text"
-                  placeholder="Alergias o notas de comida (opcional)"
-                  defaultValue={guest.dietary_notes || ""}
-                  onChange={(e) =>
-                    setDietaryNotes({ ...dietaryNotes, [guest.id]: e.target.value })
-                  }
-                  className="w-full bg-[#070D16] border border-neutral-700/80 rounded-lg px-2.5 py-1 text-[11px] text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-[#C8A569]"
-                />
               </div>
             );
           })}

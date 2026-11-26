@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import FloralCorner from "@/components/ornaments/floral-corner";
-import GoldenGlyph from "@/components/ornaments/golden-glyph";
+import Image from "next/image";
 import { Sparkles } from "lucide-react";
 
 interface Props {
@@ -17,7 +16,6 @@ interface Props {
 }
 
 export default function TableAssignedSection({ assignedTable, guestNames }: Props) {
-  // Lista de mesas de la sala para el plano interactivo SVG
   const sampleTables = [
     { id: "honor", name: "Mesa de Honor", x: 200, y: 55, r: 35, isHonor: true },
     { id: "tbl1", name: "Mesa 1", x: 90, y: 160, r: 32 },
@@ -28,37 +26,48 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
   const tableName = assignedTable?.table_name || "Mesa asignada pendiente";
 
   return (
-    <section className="relative w-full max-w-md mx-auto my-6 bg-[#0E1A29] border border-[#C8A569]/30 rounded-3xl p-6 sm:p-8 text-center shadow-2xl overflow-hidden ornamental-card">
-      <FloralCorner position="top-left" className="absolute top-0 left-0" />
-      <FloralCorner position="bottom-right" className="absolute bottom-0 right-0" />
+    <section className="relative w-full max-w-[440px] mx-auto rounded-[32px] bg-[#FAF8F5] p-6 sm:p-8 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#C8A569]/40 overflow-hidden text-[#10243B]">
+      {/* Filetes interiores dorados dobles */}
+      <div className="absolute inset-[8px] rounded-[24px] border border-[#C8A569]/30 pointer-events-none z-10" />
+      <div className="absolute inset-[13px] rounded-[19px] border border-[#C8A569]/15 pointer-events-none z-10" />
 
-      <div className="relative z-10 space-y-4">
-        <p className="text-[11px] uppercase tracking-widest text-[#C8A569] font-medium">
+      {/* Ramillete floral superior fotorrealista */}
+      <div className="absolute -top-6 -left-6 w-24 sm:w-28 h-20 pointer-events-none select-none z-20 opacity-85">
+        <Image
+          src="/assets/templates/romantic-garden/floral-composition.webp"
+          alt="Flores y hojas doradas"
+          width={1774}
+          height={887}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+        />
+      </div>
+
+      <div className="relative z-10 space-y-4 pt-10 pb-4">
+        <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.28em] text-[#8C6D37] uppercase font-semibold">
           DISTRIBUCIÓN DE LA RECEPCIÓN
         </p>
-        <GoldenGlyph />
 
-        <h2 className="text-2xl sm:text-3xl font-serif italic text-white leading-tight">
+        <h2 className="font-serif italic font-normal text-3xl sm:text-4xl text-[#0E1A29] tracking-wide leading-tight">
           Tu Lugar en Nuestra Boda
         </h2>
 
-        <p className="text-xs text-neutral-300 max-w-xs mx-auto leading-relaxed">
+        <p className="font-serif italic text-xs sm:text-[13px] text-[#2D3A4B] max-w-xs mx-auto leading-relaxed">
           Hemos preparado un espacio muy especial para ti para celebrar juntos una noche inolvidable.
         </p>
 
-        {/* Tarjeta de la mesa asignada */}
-        <div className="my-5 p-4 rounded-2xl bg-gradient-to-b from-[#10243B] to-[#0A1726] border border-[#C8A569]/40 shadow-xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A569]/15 border border-[#C8A569]/40 text-[#E5C388] text-xs font-medium mb-2">
-            <Sparkles className="w-3.5 h-3.5" /> Mesa Reservada
+        {/* Tarjeta de la mesa asignada en relieve dorado */}
+        <div className="my-5 p-5 rounded-2xl bg-white/85 border border-[#C8A569]/40 shadow-sm space-y-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A569]/15 border border-[#C8A569]/40 text-[#8C6D37] font-cinzel text-[10px] font-bold tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#C8A569]" /> MESA RESERVADA
           </div>
-          <p className="text-xl sm:text-2xl font-serif font-bold text-[#E5C388] tracking-wide">
+          <p className="font-serif text-2xl sm:text-3xl font-bold text-[#0E1A29] tracking-wide pt-1">
             {tableName}
           </p>
-          <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+          <div className="mt-3 flex flex-wrap justify-center gap-1.5 pt-1">
             {guestNames.map((name, idx) => (
               <span
                 key={idx}
-                className="text-xs text-neutral-300 bg-[#070D16] px-2.5 py-0.5 rounded-full border border-neutral-700/60"
+                className="font-serif text-xs text-[#8C6D37] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#C8A569]/30"
               >
                 {name}
               </span>
@@ -66,10 +75,10 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
           </div>
         </div>
 
-        {/* Plano interactivo SVG del salón */}
-        <div className="relative bg-[#070D16]/90 border border-[#C8A569]/20 rounded-2xl p-4 shadow-inner">
-          <p className="text-[10px] uppercase tracking-wider text-[#C8A569] mb-2 font-medium">
-            Plano del Salón de Recepción
+        {/* Plano del salón */}
+        <div className="relative bg-white/85 border border-[#C8A569]/30 rounded-2xl p-4 shadow-sm">
+          <p className="font-cinzel text-[10px] uppercase tracking-wider text-[#8C6D37] mb-2 font-bold">
+            PLANO DEL SALÓN DE RECEPCIÓN
           </p>
 
           <svg viewBox="0 0 400 300" className="w-full h-48 select-none">
@@ -80,21 +89,21 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
               width="120"
               height="80"
               rx="12"
-              fill="#10243B"
+              fill="#FAF8F5"
               stroke="#C8A569"
               strokeWidth="1"
               strokeDasharray="4 3"
-              opacity="0.6"
+              opacity="0.9"
             />
             <text
               x="200"
               y="155"
               textAnchor="middle"
-              fill="#C8A569"
+              fill="#8C6D37"
               fontSize="10"
-              opacity="0.8"
               fontFamily="var(--font-cinzel)"
               letterSpacing="2"
+              fontWeight="bold"
             >
               PISTA DE BAILE
             </text>
@@ -113,10 +122,10 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
                     cy={tbl.y}
                     r={tbl.r + 8}
                     fill="none"
-                    stroke={isAssigned ? "#E5C388" : "#4A5D73"}
+                    stroke={isAssigned ? "#C8A569" : "#C8A569"}
                     strokeWidth="1.5"
                     strokeDasharray="3 4"
-                    opacity={isAssigned ? 0.9 : 0.4}
+                    opacity={isAssigned ? 0.9 : 0.35}
                   />
 
                   {/* Mesa principal */}
@@ -124,10 +133,10 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
                     cx={tbl.x}
                     cy={tbl.y}
                     r={tbl.r}
-                    fill={isAssigned ? "url(#goldTableGrad)" : "#13253B"}
-                    stroke={isAssigned ? "#FFFFFF" : "#C8A569"}
+                    fill={isAssigned ? "url(#goldTableGradLight)" : "#FAF8F5"}
+                    stroke={isAssigned ? "#8C6D37" : "#C8A569"}
                     strokeWidth={isAssigned ? "2.5" : "1"}
-                    filter={isAssigned ? "url(#glowFilter)" : undefined}
+                    filter={isAssigned ? "url(#glowFilterLight)" : undefined}
                   />
 
                   {/* Nombre de la mesa */}
@@ -135,10 +144,10 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
                     x={tbl.x}
                     y={tbl.y + 4}
                     textAnchor="middle"
-                    fill={isAssigned ? "#10243B" : "#C8A569"}
+                    fill={isAssigned ? "#10243B" : "#8C6D37"}
                     fontSize={tbl.isHonor ? "9" : "10"}
                     fontWeight={isAssigned ? "bold" : "normal"}
-                    fontFamily="sans-serif"
+                    fontFamily="var(--font-cinzel)"
                   >
                     {tbl.name}
                   </text>
@@ -147,20 +156,20 @@ export default function TableAssignedSection({ assignedTable, guestNames }: Prop
             })}
 
             <defs>
-              <linearGradient id="goldTableGrad" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="goldTableGradLight" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stopColor="#FFF1D6" />
                 <stop offset="50%" stopColor="#E5C388" />
                 <stop offset="100%" stopColor="#C8A569" />
               </linearGradient>
-              <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
+              <filter id="glowFilterLight" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
             </defs>
           </svg>
 
-          <p className="text-[10px] text-neutral-400 mt-2 italic">
-            Tu mesa está resaltada en dorado brillante.
+          <p className="font-serif italic text-[11px] text-[#718096] mt-2">
+            Tu mesa está resaltada en resplandor dorado brillante.
           </p>
         </div>
       </div>

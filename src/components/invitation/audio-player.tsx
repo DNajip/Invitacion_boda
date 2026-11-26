@@ -11,7 +11,7 @@ interface Props {
   audioSrc?: string;
 }
 
-const AudioPlayer = forwardRef<AudioPlayerRef, Props>(({ audioSrc = "/audio/ambient-romance.mp3" }, ref) => {
+const AudioPlayer = forwardRef<AudioPlayerRef, Props>(({ audioSrc = "/audio/ambient-romance.wav" }, ref) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 
 interface Props {
   targetDateString: string;
@@ -14,159 +14,114 @@ interface TimeRemaining {
   seconds: number;
 }
 
+function calculateTimeRemaining(targetDateString: string): TimeRemaining {
+  const target = new Date(targetDateString).getTime();
+  const now = new Date().getTime();
+  const diff = target - now;
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((diff % (1000 * 60)) / 1000),
+  };
+}
+
+const emptySubscribe = () => () => {};
+
 export default function Section02Countdown({ targetDateString }: Props) {
-  const [timeLeft, setTimeLeft] = useState<TimeRemaining>(() => {
-    const target = new Date(targetDateString).getTime();
-    const now = new Date().getTime();
-    const diff = target - now;
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    return {
-      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-      minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-      seconds: Math.floor((diff % (1000 * 60)) / 1000),
-    };
-  });
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [timeLeft, setTimeLeft] = useState<TimeRemaining>(() => calculateTimeRemaining(targetDateString));
 
   useEffect(() => {
-    const target = new Date(targetDateString).getTime();
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const diff = target - now;
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      } else {
-        setTimeLeft({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((diff % (1000 * 60)) / 1000),
-        });
-      }
+      setTimeLeft(calculateTimeRemaining(targetDateString));
     }, 1000);
+
     return () => clearInterval(interval);
   }, [targetDateString]);
 
   const boxes = [
-    { label: "Días", value: timeLeft.days },
-    { label: "Horas", value: timeLeft.hours },
-    { label: "Minutos", value: timeLeft.minutes },
-    { label: "Segundos", value: timeLeft.seconds },
+    { label: "DÍAS", value: isMounted ? timeLeft.days : "--" },
+    { label: "HORAS", value: isMounted ? timeLeft.hours : "--" },
+    { label: "MIN", value: isMounted ? timeLeft.minutes : "--" },
+    { label: "SEG", value: isMounted ? timeLeft.seconds : "--" },
   ];
 
   return (
-    <section className="relative w-full max-w-[420px] mx-auto min-h-[720px] rounded-t-[140px] rounded-b-[36px] bg-gradient-to-b from-[#081729] via-[#0E2238] to-[#081729] p-6 sm:p-8 text-center shadow-2xl flex flex-col justify-between overflow-hidden border border-[#C8A569]/40">
+    <section className="relative w-full max-w-[440px] mx-auto min-h-[680px] sm:min-h-[710px] rounded-t-[140px] rounded-b-[36px] bg-gradient-to-b from-[#081729] via-[#0D2035] to-[#081729] p-6 sm:p-8 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between overflow-hidden border border-[#C8A569]/40">
       {/* Filete interior dorado en forma de arco */}
-      <div className="absolute inset-[7px] rounded-t-[133px] rounded-b-[29px] border border-[#C8A569]/25 pointer-events-none" />
+      <div className="absolute inset-[8px] rounded-t-[132px] rounded-b-[28px] border border-[#C8A569]/30 pointer-events-none z-10" />
+      <div className="absolute inset-[13px] rounded-t-[127px] rounded-b-[23px] border border-[#C8A569]/15 pointer-events-none z-10" />
 
-      {/* Farol colgante nocturno cálido (Superior Derecha) */}
-      <div className="absolute top-2 right-4 w-12 h-24 pointer-events-none select-none z-20">
+      {/* Ramillete floral superior fotorrealista anclado a la esquina superior izquierda */}
+      <div className="absolute -top-8 sm:-top-10 -left-9 sm:-left-11 w-44 sm:w-52 h-36 sm:h-44 pointer-events-none select-none z-20">
         <Image
-          src="/images/assets/hanging-lantern.png"
-          alt="Farol de jardín cálido"
-          width={44}
-          height={95}
-          className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(240,213,165,0.7)]"
+          src="/assets/templates/romantic-garden/floral-composition.webp"
+          alt="Flores blancas y hojas doradas"
+          width={1774}
+          height={887}
+          className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)]"
         />
       </div>
 
-      {/* Flores blancas superiores izquierdas */}
-      <div className="absolute -top-2 -left-2 w-32 h-28 pointer-events-none select-none z-20">
-        <Image
-          src="/images/assets/floral-small.png"
-          alt="Flores blancas"
-          width={160}
-          height={155}
-          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)]"
-        />
-      </div>
-
-      {/* Cinta dorada ondulante y flores en la base */}
-      <div className="absolute -bottom-2 left-0 right-0 h-28 pointer-events-none select-none z-20 flex items-center justify-center">
-        <Image
-          src="/images/assets/gold-ribbon.png"
-          alt="Cinta de satén dorada"
-          width={325}
-          height={100}
-          className="w-full max-w-[340px] object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-        />
-      </div>
-
-      {/* Flores pequeñas en la base derecha */}
-      <div className="absolute bottom-2 -right-3 w-28 h-24 pointer-events-none select-none z-30">
-        <Image
-          src="/images/assets/floral-small.png"
-          alt="Flores"
-          width={160}
-          height={155}
-          className="w-full h-full object-contain"
-        />
-      </div>
-
-      {/* Contenido principal */}
-      <div className="relative z-10 pt-10 pb-16 space-y-3">
-        {/* Encabezado */}
-        <p className="font-cinzel text-[11px] tracking-[0.25em] text-[#C8A569] uppercase font-semibold">
-          RESERVA ESTA FECHA
+      {/* Contenido principal con separación holgada respecto a la flor */}
+      <div className="relative z-10 pt-24 sm:pt-28 pb-4 space-y-4">
+        <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.28em] text-[#C8A569] uppercase font-semibold">
+          CUENTA REGRESIVA
         </p>
 
-        {/* Glifo filigrana dorado */}
-        <div className="w-16 h-4 mx-auto opacity-80">
-          <svg viewBox="0 0 60 16" fill="none" className="w-full h-full text-[#C8A569]">
-            <path d="M 0 8 Q 15 2 30 8 Q 45 14 60 8" stroke="currentColor" strokeWidth="1" />
-            <circle cx="30" cy="8" r="2.5" fill="currentColor" />
-          </svg>
-        </div>
+        <h2 className="font-serif italic font-normal text-4xl sm:text-5xl text-white tracking-wide drop-shadow-md">
+          El Gran Día
+        </h2>
 
-        {/* Bloque de fecha */}
-        <div className="space-y-0.5 pt-1">
-          <p className="font-serif italic text-2xl sm:text-3xl text-neutral-200 font-light">
-            Sábado
+        {/* Bloque de fecha en dorado con número 19 monumental */}
+        <div className="py-2">
+          <p className="font-cinzel text-xs tracking-[0.25em] text-[#E5C388] uppercase">
+            SÁBADO
           </p>
-
-          {/* Gran número 19 en relieve 3D dorado */}
-          <div className="relative inline-block my-1">
-            <span className="font-serif font-bold text-7xl sm:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5DC] via-[#E5C388] to-[#99763D] tracking-tight leading-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)]">
+          <div className="my-1">
+            <span className="font-serif text-6xl sm:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[#FFF2D6] via-[#E2C082] to-[#B38D48] drop-shadow-[0_4px_10px_rgba(200,165,105,0.4)]">
               19
             </span>
           </div>
-
-          <p className="font-serif italic text-2xl sm:text-3xl text-neutral-200 font-light">
-            Diciembre
-          </p>
-
-          <p className="font-cinzel text-sm tracking-[0.3em] text-[#C8A569] pt-1">
-            2026
+          <p className="font-cinzel text-sm sm:text-base tracking-[0.22em] text-[#E5C388] uppercase font-medium">
+            DICIEMBRE · 2026
           </p>
         </div>
 
-        {/* Separador sutil */}
-        <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#C8A569]/50 to-transparent mx-auto my-3" />
-
-        <p className="font-serif italic text-xs text-neutral-300 max-w-[260px] mx-auto font-light">
-          Cada día estamos más cerca de nuestro para siempre.
+        {/* Mensaje sutil */}
+        <p className="font-serif italic text-xs text-[#E1D3BF] max-w-[280px] mx-auto leading-relaxed pt-1">
+          Cada segundo nos acerca más al momento en que comenzaremos a escribir nuestra historia juntos.
         </p>
 
-        <p className="font-cinzel text-[11px] tracking-[0.25em] text-[#C8A569] font-bold pt-3 uppercase">
-          FALTAN
-        </p>
-
-        {/* 4 Cajas de cuenta regresiva con marco dorado y fondo traslúcido */}
-        <div className="grid grid-cols-4 gap-2 max-w-[320px] mx-auto pt-2">
-          {boxes.map((b, idx) => (
+        {/* Cajas de cuenta regresiva en relieve dorado */}
+        <div className="grid grid-cols-4 gap-2.5 pt-4 max-w-[340px] mx-auto">
+          {boxes.map((b, i) => (
             <div
-              key={idx}
-              className="bg-[#081729]/80 border border-[#C8A569]/40 rounded-xl p-2.5 backdrop-blur-sm shadow-[inset_0_1px_4px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center"
+              key={i}
+              className="bg-[#0A1D33]/80 border border-[#C8A569]/50 rounded-2xl p-2.5 backdrop-blur-md shadow-[0_6px_16px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.1)] flex flex-col items-center justify-center transition-transform hover:scale-105"
             >
-              <span className="font-serif font-bold text-xl sm:text-2xl text-white tracking-tight">
+              <span className="font-serif font-bold text-2xl sm:text-3xl text-white tracking-tight drop-shadow-sm">
                 {b.value}
               </span>
-              <span className="font-cinzel text-[9px] text-[#E5C388] tracking-wider uppercase mt-0.5">
+              <span className="font-cinzel text-[8px] sm:text-[9px] text-[#C8A569] tracking-wider uppercase mt-0.5 font-semibold">
                 {b.label}
               </span>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Cinta dorada ondulante fotorrealista en la base */}
+      <div className="relative w-full h-24 -mb-3 pointer-events-none select-none z-20 flex items-center justify-center">
+        <Image
+          src="/assets/templates/romantic-garden/gold-ribbon.webp"
+          alt="Cinta de satén dorada"
+          width={2172}
+          height={724}
+          className="w-full max-w-[380px] object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.7)]"
+        />
       </div>
     </section>
   );

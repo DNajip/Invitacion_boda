@@ -9,68 +9,115 @@ interface Props {
 
 export default function Section01Welcome({ groom, bride }: Props) {
   return (
-    <section className="relative w-full max-w-[420px] mx-auto min-h-[640px] rounded-[32px] bg-[#FAF8F5] text-[#122438] p-6 sm:p-8 text-center shadow-2xl flex flex-col justify-between overflow-hidden border border-[#D4BC92]">
-      {/* Marco ornamental interior con filete dorado doble */}
-      <div className="absolute inset-[8px] rounded-[24px] border border-[#C8A569]/35 pointer-events-none" />
+    <section className="relative w-full max-w-[440px] mx-auto rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#C8A569]/40 bg-[#FAF8F5] text-center">
+      {/* ============================================================================== */}
+      {/* CAPA 1: FONDO BLANCO / ALGODÓN TEXTURIZADO CONTINUO (100% de la tarjeta)        */}
+      {/* ============================================================================== */}
+      <div className="absolute inset-0 z-0 bg-[#FAF8F5]" />
 
-      {/* Ramillete de lirios blancos y follaje dorado en la esquina inferior derecha */}
-      <div className="absolute -bottom-6 -right-6 w-44 h-36 pointer-events-none select-none z-20 scale-x-[-1]">
+      {/* ============================================================================== */}
+      {/* CAPA 2: MARCO ORNAMENTAL DORADO VECTORIAL CON ESQUINAS FESTONEADAS CLÁSICAS    */}
+      {/* ============================================================================== */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+        viewBox="0 0 440 680"
+        preserveAspectRatio="none"
+      >
+        {/* Marco exterior */}
+        <path
+          d="M 36 16 L 404 16 A 18 18 0 0 0 424 36 L 424 644 A 18 18 0 0 0 404 664 L 36 664 A 18 18 0 0 0 16 644 L 16 36 A 18 18 0 0 0 36 16 Z"
+          fill="none"
+          stroke="#C8A569"
+          strokeWidth="1.5"
+          strokeOpacity="0.5"
+        />
+        {/* Marco interior fino */}
+        <path
+          d="M 40 21 L 400 21 A 14 14 0 0 0 419 40 L 419 640 A 14 14 0 0 0 400 659 L 40 659 A 14 14 0 0 0 21 640 L 21 40 A 14 14 0 0 0 40 21 Z"
+          fill="none"
+          stroke="#C8A569"
+          strokeWidth="0.8"
+          strokeOpacity="0.3"
+        />
+      </svg>
+
+      {/* ============================================================================== */}
+      {/* CAPA 3: COMPOSICIÓN FLORAL SUPERIOR IZQUIERDA INDEPENDIENTE                   */}
+      {/* ============================================================================== */}
+      <div className="absolute -top-9 sm:-top-11 -left-9 sm:-left-11 w-[145px] sm:w-[175px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20">
         <Image
-          src="/images/assets/floral-corner.png"
-          alt="Lirios y hojas doradas"
-          width={360}
-          height={255}
-          className="w-full h-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.25)]"
+          src="/assets/templates/romantic-garden/floral-composition.webp"
+          alt="Flores blancas y hojas doradas superiores"
+          width={1774}
+          height={887}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
+          priority
         />
       </div>
 
-      <div className="relative z-10 py-6 space-y-4">
-        {/* Cabecera */}
-        <p className="font-cinzel text-[11px] tracking-[0.25em] text-[#8C6D37] uppercase font-semibold">
+      {/* ============================================================================== */}
+      {/* CAPA 4: COMPOSICIÓN FLORAL INFERIOR DERECHA INDEPENDIENTE                     */}
+      {/* Anclada a la esquina inferior derecha, sin tocar el nombre de Fabiola          */}
+      {/* ============================================================================== */}
+      <div className="absolute -bottom-10 sm:-bottom-12 -right-10 sm:-right-12 w-[145px] sm:w-[175px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20 scale-x-[-1]">
+        <Image
+          src="/assets/templates/romantic-garden/floral-composition.webp"
+          alt="Flores blancas y hojas doradas inferiores"
+          width={1774}
+          height={887}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
+        />
+      </div>
+
+      {/* ============================================================================== */}
+      {/* CAPA 5: CONTENIDO TEXTUAL DINÁMICO                                             */}
+      {/* ============================================================================== */}
+      <div className="relative z-20 flex flex-col items-center justify-center px-8 sm:px-10 pt-18 sm:pt-22 pb-16 sm:pb-20 text-center">
+        {/* Cabecera ceremonial */}
+        <p className="font-cinzel text-[9px] sm:text-[9.5px] tracking-[0.16em] text-[#8C6D37] uppercase font-semibold mb-1">
           CON LA BENDICIÓN DE DIOS
         </p>
 
-        {/* Alianzas matrimoniales entrelazadas */}
-        <div className="w-14 h-9 mx-auto drop-shadow-md">
+        {/* Alianzas matrimoniales fotorrealistas de oro */}
+        <div className="w-14 h-9 relative my-1 drop-shadow-md">
           <Image
-            src="/images/assets/wedding-rings.png"
+            src="/assets/templates/romantic-garden/wedding-rings.webp"
             alt="Alianzas de oro"
-            width={140}
-            height={90}
-            className="w-full h-full object-contain"
+            fill
+            sizes="56px"
+            className="object-contain"
           />
         </div>
 
-        {/* ¡Nos casamos! en Great Vibes */}
-        <h2 className="font-script text-4xl sm:text-5xl text-[#112338] tracking-wide pt-1">
+        {/* ¡Nos casamos! en Cormorant Garamond Italic */}
+        <h2 className="font-serif italic font-normal text-4xl sm:text-5xl text-[#0E1A29] tracking-wide my-1.5 leading-tight drop-shadow-sm">
           ¡Nos casamos!
         </h2>
 
-        {/* Texto editorial nupcial */}
-        <div className="space-y-3.5 max-w-[280px] mx-auto text-xs sm:text-[13px] text-[#334253] leading-relaxed font-serif font-medium pt-2">
+        {/* Texto editorial nupcial en Cormorant Garamond */}
+        <div className="space-y-2.5 max-w-[270px] mx-auto text-xs sm:text-[13px] text-[#2D3A4B] leading-relaxed font-serif font-medium my-1.5">
           <p>
             Hay momentos en la vida que merecen ser compartidos con las personas que más queremos.
           </p>
           <p>
-            Con el corazón lleno de amor y alegría, hemos decidido unir nuestras vidas en matrimonio y
-            comenzar juntos un nuevo capítulo de nuestra historia.
+            Con el corazón lleno de amor y alegría, hemos decidido unir nuestras vidas en matrimonio y comenzar juntos un nuevo capítulo de nuestra historia.
           </p>
-          <p>
+          <p className="font-semibold text-[#10243B]">
             Nos encantaría que nos acompañaras a celebrar este día tan especial.
           </p>
         </div>
 
-        {/* Corazón dorado sutil */}
-        <div className="pt-2">
-          <svg viewBox="0 0 24 24" className="w-5 h-5 mx-auto text-[#C8A569] fill-none stroke-current stroke-[1.5]">
+        {/* Pequeño ornamento corazón dorado */}
+        <div className="my-1.5 text-[#C8A569]">
+          <svg viewBox="0 0 24 24" className="w-4 h-4 mx-auto fill-none stroke-current stroke-[1.5]">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
 
-        {/* Firma caligráfica de los novios */}
-        <div className="pt-1">
-          <p className="font-script text-3xl sm:text-4xl text-[#C8A569] tracking-wider leading-tight">
-            {groom} & {bride}
+        {/* Firma editorial de los novios */}
+        <div className="pt-0.5">
+          <p className="font-serif italic font-medium text-3xl sm:text-4xl text-[#9E7A38] tracking-wider leading-none">
+            {groom} y {bride}
           </p>
         </div>
       </div>
