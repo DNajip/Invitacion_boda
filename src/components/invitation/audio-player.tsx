@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useImperativeHandle, forwardRef } from "react";
+import { useRef, useState, useEffect, useImperativeHandle, forwardRef, useCallback } from "react";
 import { Music2 } from "lucide-react";
 
 export interface AudioPlayerRef {
@@ -16,9 +16,15 @@ const AudioPlayer = forwardRef<AudioPlayerRef, Props>(
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    const startAudioWithFade = () => {
+    // Función para reproducir con aumento progresivo de volumen (fade-in)
+    const startAudioWithFade = useCallback(() => {
       if (!audioRef.current) return;
       const audio = audioRef.current;
+
+      if (!audio.paused) {
+        setIsPlaying(true);
+        return;
+      }
 
       audio.volume = 0;
       const playPromise = audio.play();
@@ -27,7 +33,6 @@ const AudioPlayer = forwardRef<AudioPlayerRef, Props>(
         playPromise
           .then(() => {
             setIsPlaying(true);
-            // Fade-in gradual de volumen durante 2.5 segundos hasta 0.75
             let currentVol = 0;
             const fadeInterval = setInterval(() => {
               currentVol = Math.min(0.75, currentVol + 0.05);
@@ -40,15 +45,72 @@ const AudioPlayer = forwardRef<AudioPlayerRef, Props>(
             }, 120);
           })
           .catch((err) => {
-            console.warn("Autoplay bloqueado por el navegador:", err);
+            console.warn("Autoplay bloqueado por políticas del navegador:", err);
           });
       }
-    };
+    }, []);
 
     useImperativeHandle(ref, () => ({
       startAudioWithFade,
     }));
 
+    // Auto-activación inmediata al entrar al enlace
+    useEffect(() => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      // 1. Intentar reproducir de inmediato al montar el componente
+      audio.volume = 0;
+      const initialPromise = audio.play();
+
+      if (initialPromise !== undefined) {
+        initialPromise
+          .then(() => {
+            setIsPlaying(true);
+            let currentVol = 0;
+            const fadeInterval = setInterval(() => {
+              currentVol = Math.min(0.75, currentVol + 0.05);
+              if (audio) audio.volume = currentVol;
+              if (currentVol >= 0.75) clearInterval(fadeInterval);
+            }, 120);
+          })
+          .catch(() => {
+            // 2. Si el navegador (móviles/iOS/Safari/Chrome) bloquea el audio sin interacción previa,
+            // activarlo automáticamente al primer toque, clic o scroll en cualquier parte de la pantalla.
+            const handleFirstGesture = () => {
+              if (audioRef.current && audioRef.current.paused) {
+                audioRef.current.volume = 0;
+                audioRef.current
+                  .play()
+                  .then(() => {
+                    setIsPlaying(true);
+                    let currentVol = 0;
+                    const fadeInterval = setInterval(() => {
+                      currentVol = Math.min(0.75, currentVol + 0.05);
+                      if (audioRef.current) audioRef.current.volume = currentVol;
+                      if (currentVol >= 0.75) clearInterval(fadeInterval);
+                    }, 120);
+                  })
+                  .catch(console.warn);
+              }
+              cleanup();
+            };
+
+            const events = ["click", "touchstart", "pointerdown", "scroll", "keydown"];
+            const cleanup = () => {
+              events.forEach((ev) => window.removeEventListener(ev, handleFirstGesture));
+            };
+
+            events.forEach((ev) =>
+              window.addEventListener(ev, handleFirstGesture, { once: true, passive: true })
+            );
+
+            return cleanup;
+          });
+      }
+    }, []);
+
+    // Alternar silencio / reanudación al presionar el botón flotante
     const togglePlay = () => {
       if (!audioRef.current) return;
       const audio = audioRef.current;
@@ -72,6 +134,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, Props>(
         <audio
           ref={audioRef}
           src={audioSrc}
+          autoPlay
           loop
           preload="auto"
         />
