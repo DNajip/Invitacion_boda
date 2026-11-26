@@ -74,7 +74,7 @@ export default function Section01Welcome({ groom, bride }: Props) {
       {/* ============================================================================== */}
       <div className="relative z-20 flex flex-col items-center justify-center px-8 sm:px-10 pt-18 sm:pt-22 pb-16 sm:pb-20 text-center">
         {/* Cabecera ceremonial */}
-        <p className="font-cinzel text-[9px] sm:text-[9.5px] tracking-[0.16em] text-[#8C6D37] uppercase font-semibold mb-1">
+        <p className="font-cinzel text-[11px] sm:text-[11.5px] tracking-[0.16em] text-[#8C6D37] uppercase font-semibold mb-1">
           CON LA BENDICIÓN DE DIOS
         </p>
 
@@ -95,7 +95,7 @@ export default function Section01Welcome({ groom, bride }: Props) {
         </h2>
 
         {/* Texto editorial nupcial en Cormorant Garamond */}
-        <div className="space-y-2.5 max-w-[270px] mx-auto text-xs sm:text-[13px] text-[#2D3A4B] leading-relaxed font-serif font-medium my-1.5">
+        <div className="space-y-2.5 max-w-[280px] mx-auto text-[14px] sm:text-[15px] text-[#2D3A4B] leading-relaxed font-serif font-medium my-1.5">
           <p>
             Hay momentos en la vida que merecen ser compartidos con las personas que más queremos.
           </p>
