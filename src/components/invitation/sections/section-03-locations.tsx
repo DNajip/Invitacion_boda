@@ -79,7 +79,7 @@ export default function Section03Locations({ settings }: Props) {
         <div className="space-y-2 bg-white/75 border border-[#C8A569]/25 rounded-2xl p-3.5 sm:p-4 shadow-sm">
           <div className="w-full h-24 sm:h-28 relative rounded-xl overflow-hidden shadow-inner border border-[#C8A569]/20">
             <Image
-              src="/images/assets/church-photo.webp"
+              src="/images/assets/church-venue.webp"
               alt="Capilla Ceremonia"
               fill
               sizes="400px"
@@ -133,7 +133,7 @@ export default function Section03Locations({ settings }: Props) {
         <div className="space-y-2 bg-white/75 border border-[#C8A569]/25 rounded-2xl p-3.5 sm:p-4 shadow-sm">
           <div className="w-full h-24 sm:h-28 relative rounded-xl overflow-hidden shadow-inner border border-[#C8A569]/20">
             <Image
-              src="/images/assets/reception-photo.webp"
+              src="/images/assets/reception-venue.webp"
               alt="Salón de Recepción"
               fill
               sizes="400px"
