@@ -42,29 +42,50 @@ export default function Section01Welcome({ groom, bride }: Props) {
       </svg>
 
       {/* ============================================================================== */}
-      {/* CAPA 3: COMPOSICIÓN FLORAL SUPERIOR IZQUIERDA INDEPENDIENTE                   */}
+      {/* CAPA 3: COMPOSICIONES FLORALES NUPCIALES EN LAS 4 ESQUINAS                     */}
       {/* ============================================================================== */}
-      <div className="absolute -top-9 sm:-top-11 -left-9 sm:-left-11 w-[145px] sm:w-[175px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20">
+      {/* Esquina Superior Izquierda */}
+      <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-[125px] sm:w-[150px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores blancas y hojas doradas superiores"
-          width={1774}
-          height={887}
+          src="/assets/templates/romantic-garden/floral-corner-tl.webp"
+          alt="Esquina floral superior izquierda"
+          width={1284}
+          height={1225}
           className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
           priority
         />
       </div>
 
-      {/* ============================================================================== */}
-      {/* CAPA 4: COMPOSICIÓN FLORAL INFERIOR DERECHA INDEPENDIENTE                     */}
-      {/* Anclada a la esquina inferior derecha, sin tocar el nombre de Fabiola          */}
-      {/* ============================================================================== */}
-      <div className="absolute -bottom-10 sm:-bottom-12 -right-10 sm:-right-12 w-[145px] sm:w-[175px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20 scale-x-[-1]">
+      {/* Esquina Superior Derecha */}
+      <div className="absolute -top-4 sm:-top-6 -right-4 sm:-right-6 w-[125px] sm:w-[150px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores blancas y hojas doradas inferiores"
-          width={1774}
-          height={887}
+          src="/assets/templates/romantic-garden/floral-corner-tr.webp"
+          alt="Esquina floral superior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
+          priority
+        />
+      </div>
+
+      {/* Esquina Inferior Izquierda */}
+      <div className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 w-[125px] sm:w-[150px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-bl.webp"
+          alt="Esquina floral inferior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Derecha */}
+      <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 w-[125px] sm:w-[150px] h-[120px] sm:h-[145px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-br.webp"
+          alt="Esquina floral inferior derecha"
+          width={1284}
+          height={1225}
           className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.15)]"
         />
       </div>
