@@ -91,7 +91,7 @@ export default function Section02Countdown({ targetDateString }: Props) {
         </div>
 
         {/* Mensaje sutil */}
-        <p className="font-serif italic text-xs text-[#E1D3BF] max-w-[280px] mx-auto leading-relaxed pt-1">
+        <p className="font-serif italic text-[14px] text-[#E1D3BF] max-w-[300px] mx-auto leading-relaxed pt-1">
           Cada segundo nos acerca más al momento en que comenzaremos a escribir nuestra historia juntos.
         </p>
 
