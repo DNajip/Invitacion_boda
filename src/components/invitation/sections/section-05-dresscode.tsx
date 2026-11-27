@@ -71,17 +71,17 @@ export default function Section05Dresscode({ settings }: Props) {
           </h2>
         </div>
 
-        {/* Fotografía de los novios en marco romántico de corazón ampliado (+35%) */}
-        <div className="relative flex flex-col items-center justify-center mx-auto pt-1 pb-2">
-          <div className="relative w-full max-w-[320px] sm:max-w-[350px] mx-auto">
+        {/* Fotografía de los novios Novios2 */}
+        <div className="relative flex flex-col items-center justify-center mx-auto pt-1 pb-3">
+          <div className="relative w-full max-w-[290px] sm:max-w-[320px] mx-auto">
             <Image
-              src="/images/assets/dresscode-novios-heart.webp"
+              src="/images/assets/novios-heart-user.webp"
               alt="Daren y Fabiola"
-              width={1000}
-              height={920}
+              width={1245}
+              height={1089}
               unoptimized
               priority
-              className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(200,165,105,0.25)] transition-transform hover:scale-[1.01]"
+              className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.15)] transition-transform hover:scale-[1.01]"
             />
             {/* Sello distintivo con filigrana dorada en la punta del corazón */}
             <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
