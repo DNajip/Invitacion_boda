@@ -14,18 +14,54 @@ export default function Section04Details({ settings }: Props) {
       <div className="absolute inset-[8px] rounded-[24px] border border-[#C8A569]/30 pointer-events-none z-10" />
       <div className="absolute inset-[13px] rounded-[19px] border border-[#C8A569]/15 pointer-events-none z-10" />
 
-      {/* Ramillete floral superior esquinero */}
-      <div className="absolute -top-6 -right-6 w-24 sm:w-28 h-20 pointer-events-none select-none z-20 scale-x-[-1] opacity-85">
+      {/* ============================================================================== */}
+      {/* COMPOSICIONES FLORALES NUPCIALES EN LAS 4 ESQUINAS                              */}
+      {/* ============================================================================== */}
+      {/* Esquina Superior Izquierda */}
+      <div className="absolute -top-4 sm:-top-5 -left-4 sm:-left-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores y hojas doradas"
-          width={1774}
-          height={887}
-          className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)]"
+          src="/assets/templates/romantic-garden/floral-corner-tl.webp"
+          alt="Esquina floral superior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
         />
       </div>
 
-      <div className="relative z-10 space-y-7 pt-9 pb-3">
+      {/* Esquina Superior Derecha */}
+      <div className="absolute -top-4 sm:-top-5 -right-4 sm:-right-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-tr.webp"
+          alt="Esquina floral superior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Izquierda */}
+      <div className="absolute -bottom-4 sm:-bottom-5 -left-4 sm:-left-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-bl.webp"
+          alt="Esquina floral inferior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Derecha */}
+      <div className="absolute -bottom-4 sm:-bottom-5 -right-4 sm:-right-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-br.webp"
+          alt="Esquina floral inferior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
+        />
+      </div>
+
+      <div className="relative z-10 space-y-7 pt-9 pb-5">
         <div>
           <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.25em] text-[#C8A569] uppercase font-semibold">
             INFORMACIÓN IMPORTANTE
@@ -47,11 +83,11 @@ export default function Section04Details({ settings }: Props) {
             />
           </div>
           <h3 className="font-serif italic font-bold text-xl text-white">
-            {settings.special_adults_title || "Recepción solo para adultos"}
+            {settings.special_adults_title || "Una velada solo para adultos"}
           </h3>
-          <p className="font-serif text-xs sm:text-[13px] text-[#E1D3BF] max-w-xs mx-auto leading-relaxed">
+          <p className="font-serif text-[14px] sm:text-[15px] text-[#E1D3BF] max-w-sm mx-auto leading-relaxed">
             {settings.special_adults_text ||
-              "Amamos a tus pequeños, pero queremos que disfrutes de una noche de total relajación y celebración entre adultos."}
+              "Aunque los pequeños ocupan un lugar especial en nuestros corazones, en esta ocasión hemos preparado una celebración exclusiva para adultos. Agradecemos de corazón tu comprensión."}
           </p>
         </div>
 
@@ -86,11 +122,11 @@ export default function Section04Details({ settings }: Props) {
           </div>
 
           <h3 className="font-serif italic font-bold text-xl text-white">
-            {settings.special_envelope_title || "Lluvia de Sobres"}
+            {settings.special_envelope_title || "Lluvia de sobres"}
           </h3>
-          <p className="font-serif text-xs sm:text-[13px] text-[#E1D3BF] max-w-xs mx-auto leading-relaxed">
+          <p className="font-serif text-[14px] sm:text-[15px] text-[#E1D3BF] max-w-sm mx-auto leading-relaxed">
             {settings.special_envelope_text ||
-              "Tu presencia es nuestro mejor regalo. Si deseas hacernos un presente, dispondremos de un buzón para tu muestra de cariño en sobre."}
+              "Tu presencia es nuestro mejor regalo. Si deseas tener un detalle con nosotros, agradeceremos una contribución monetaria en lugar de regalos materiales. Durante la recepción encontrarás sobres y un buzón especialmente preparado para esta ocasión."}
           </p>
         </div>
       </div>
