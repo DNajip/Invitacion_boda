@@ -61,7 +61,7 @@ export default function Section05Dresscode({ settings }: Props) {
         />
       </div>
 
-      <div className="relative z-10 space-y-4 pt-6 pb-7">
+      <div className="relative z-10 space-y-4 pt-6 pb-10 sm:pb-12">
         <div>
           <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.28em] text-[#8C6D37] uppercase font-semibold">
             CÓDIGO DE VESTIMENTA
@@ -71,28 +71,28 @@ export default function Section05Dresscode({ settings }: Props) {
           </h2>
         </div>
 
-        {/* Fotografía de los novios en marco romántico de corazón */}
-        <div className="relative inline-block mx-auto pt-1 pb-3">
-          <div className="relative w-[240px] sm:w-[260px] mx-auto">
+        {/* Fotografía de los novios en marco romántico de corazón ampliado (+35%) */}
+        <div className="relative flex flex-col items-center justify-center mx-auto pt-1 pb-2">
+          <div className="relative w-full max-w-[320px] sm:max-w-[350px] mx-auto">
             <Image
               src="/images/assets/dresscode-novios-heart.webp"
               alt="Daren y Fabiola"
-              width={900}
-              height={840}
+              width={1000}
+              height={920}
               unoptimized
               priority
-              className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(200,165,105,0.25)] transition-transform hover:scale-[1.02]"
+              className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(200,165,105,0.25)] transition-transform hover:scale-[1.01]"
             />
             {/* Sello distintivo con filigrana dorada en la punta del corazón */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-              <span className="inline-flex items-center px-4 py-1 rounded-full bg-gradient-to-r from-[#0E1A29] to-[#1A314D] border border-[#C8A569] font-cinzel text-[9.5px] sm:text-[10px] tracking-widest text-[#E5C388] uppercase font-bold shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
+            <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-[#0E1A29] to-[#1A314D] border border-[#C8A569] font-cinzel text-[10px] sm:text-[10.5px] tracking-widest text-[#E5C388] uppercase font-bold shadow-[0_4px_14px_rgba(0,0,0,0.4)]">
                 {settings.dresscode_subtitle || "VESTIMENTA FORMAL"}
               </span>
             </div>
           </div>
         </div>
 
-        <p className="font-serif italic text-[14px] sm:text-[15px] text-[#2D3A4B] max-w-xs mx-auto leading-relaxed">
+        <p className="font-serif italic text-[14px] sm:text-[15px] text-[#2D3A4B] max-w-xs sm:max-w-sm mx-auto leading-relaxed pt-2">
           {settings.dresscode_description ||
             "Nos encantaría que nos acompañaras luciendo tu mejor atuendo para celebrar juntos una noche llena de amor, alegría y elegancia."}
         </p>
