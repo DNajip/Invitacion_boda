@@ -71,20 +71,24 @@ export default function Section05Dresscode({ settings }: Props) {
           </h2>
         </div>
 
-        {/* Fotografía editorial de los novios de gala */}
-        <div className="w-full max-w-[250px] h-52 sm:h-56 mx-auto relative rounded-2xl overflow-hidden shadow-md border-2 border-[#C8A569]/50">
-          <Image
-            src="/images/assets/dresscode-novios.webp"
-            alt="Daren y Fabiola"
-            fill
-            sizes="250px"
-            className="object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#08192D]/85 via-transparent to-transparent" />
-          <div className="absolute bottom-2 left-0 right-0 px-2">
-            <span className="font-cinzel text-[9.5px] tracking-widest text-[#E5C388] uppercase font-bold drop-shadow">
-              {settings.dresscode_subtitle || "VESTIMENTA FORMAL"}
-            </span>
+        {/* Fotografía de los novios en marco romántico de corazón */}
+        <div className="relative inline-block mx-auto pt-1 pb-3">
+          <div className="relative w-[240px] sm:w-[260px] mx-auto">
+            <Image
+              src="/images/assets/dresscode-novios-heart.webp"
+              alt="Daren y Fabiola"
+              width={900}
+              height={840}
+              unoptimized
+              priority
+              className="w-full h-auto object-contain drop-shadow-[0_12px_28px_rgba(200,165,105,0.25)] transition-transform hover:scale-[1.02]"
+            />
+            {/* Sello distintivo con filigrana dorada en la punta del corazón */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+              <span className="inline-flex items-center px-4 py-1 rounded-full bg-gradient-to-r from-[#0E1A29] to-[#1A314D] border border-[#C8A569] font-cinzel text-[9.5px] sm:text-[10px] tracking-widest text-[#E5C388] uppercase font-bold shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
+                {settings.dresscode_subtitle || "VESTIMENTA FORMAL"}
+              </span>
+            </div>
           </div>
         </div>
 
