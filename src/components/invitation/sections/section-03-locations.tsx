@@ -15,18 +15,54 @@ export default function Section03Locations({ settings }: Props) {
       <div className="absolute inset-[7px] rounded-[22px] border border-[#C8A569]/30 pointer-events-none z-10" />
       <div className="absolute inset-[11px] rounded-[18px] border border-[#C8A569]/15 pointer-events-none z-10" />
 
-      {/* Ramillete floral superior esquinero optimizado para no tapar el texto */}
-      <div className="absolute -top-4 -right-4 w-28 sm:w-32 h-24 pointer-events-none select-none z-20 scale-x-[-1]">
+      {/* ============================================================================== */}
+      {/* COMPOSICIONES FLORALES NUPCIALES EN LAS 4 ESQUINAS                              */}
+      {/* ============================================================================== */}
+      {/* Esquina Superior Izquierda */}
+      <div className="absolute -top-4 sm:-top-5 -left-4 sm:-left-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores y hojas doradas"
-          width={1774}
-          height={887}
-          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+          src="/assets/templates/romantic-garden/floral-corner-tl.webp"
+          alt="Esquina floral superior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
         />
       </div>
 
-      <div className="relative z-10 space-y-3.5 pt-8 pb-2">
+      {/* Esquina Superior Derecha */}
+      <div className="absolute -top-4 sm:-top-5 -right-4 sm:-right-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-tr.webp"
+          alt="Esquina floral superior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Izquierda */}
+      <div className="absolute -bottom-4 sm:-bottom-5 -left-4 sm:-left-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-bl.webp"
+          alt="Esquina floral inferior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Derecha */}
+      <div className="absolute -bottom-4 sm:-bottom-5 -right-4 sm:-right-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-br.webp"
+          alt="Esquina floral inferior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+        />
+      </div>
+
+      <div className="relative z-10 space-y-3.5 pt-8 pb-4">
         {/* Encabezado sin choque floral y con 'Dónde y Cuándo' */}
         <div>
           <p className="font-cinzel text-[9.5px] sm:text-[10px] tracking-[0.2em] text-[#8C6D37] uppercase font-semibold">
@@ -64,8 +100,8 @@ export default function Section03Locations({ settings }: Props) {
             <h3 className="font-serif font-bold text-sm sm:text-base text-[#10243B]">
               {settings.ceremony_venue || "Catedral San Pedro Apóstol"}
             </h3>
-            <p className="font-serif text-[11.5px] sm:text-xs text-[#4A5568] max-w-xs mx-auto leading-relaxed">
-              {settings.ceremony_description || "Acompáñanos a recibir la bendición nupcial en una ceremonia íntima y solemne."}
+            <p className="font-serif text-[13.5px] sm:text-[14px] text-[#4A5568] max-w-xs mx-auto leading-relaxed">
+              {settings.ceremony_description || "Ante Dios y nuestros seres queridos, daremos el sí que unirá nuestras vidas."}
             </p>
           </div>
 
@@ -118,8 +154,8 @@ export default function Section03Locations({ settings }: Props) {
             <h3 className="font-serif font-bold text-sm sm:text-base text-[#10243B]">
               {settings.reception_venue || "Jardines Villa Real"}
             </h3>
-            <p className="font-serif text-[11.5px] sm:text-xs text-[#4A5568] max-w-xs mx-auto leading-relaxed">
-              {settings.reception_description || "Celebraremos con cóctel de bienvenida, cena gourmet y fiesta bajo las estrellas."}
+            <p className="font-serif text-[13.5px] sm:text-[14px] text-[#4A5568] max-w-xs mx-auto leading-relaxed">
+              {settings.reception_description || "Te esperamos para compartir una velada en familia y llena de alegría."}
             </p>
           </div>
 
