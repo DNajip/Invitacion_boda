@@ -14,18 +14,54 @@ export default function Section05Dresscode({ settings }: Props) {
       <div className="absolute inset-[8px] rounded-[24px] border border-[#C8A569]/30 pointer-events-none z-10" />
       <div className="absolute inset-[13px] rounded-[19px] border border-[#C8A569]/15 pointer-events-none z-10" />
 
-      {/* Ramillete floral superior fotorrealista */}
-      <div className="absolute -top-6 -left-6 w-24 sm:w-28 h-20 pointer-events-none select-none z-20 opacity-85">
+      {/* ============================================================================== */}
+      {/* COMPOSICIONES FLORALES NUPCIALES EN LAS 4 ESQUINAS                              */}
+      {/* ============================================================================== */}
+      {/* Esquina Superior Izquierda */}
+      <div className="absolute -top-4 sm:-top-5 -left-4 sm:-left-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
         <Image
-          src="/assets/templates/romantic-garden/floral-composition.webp"
-          alt="Flores y hojas doradas"
-          width={1774}
-          height={887}
-          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+          src="/assets/templates/romantic-garden/floral-corner-tl.webp"
+          alt="Esquina floral superior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
         />
       </div>
 
-      <div className="relative z-10 space-y-4 pt-6 pb-2">
+      {/* Esquina Superior Derecha */}
+      <div className="absolute -top-4 sm:-top-5 -right-4 sm:-right-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-tr.webp"
+          alt="Esquina floral superior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Izquierda */}
+      <div className="absolute -bottom-4 sm:-bottom-5 -left-4 sm:-left-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-bl.webp"
+          alt="Esquina floral inferior izquierda"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+        />
+      </div>
+
+      {/* Esquina Inferior Derecha */}
+      <div className="absolute -bottom-4 sm:-bottom-5 -right-4 sm:-right-5 w-[115px] sm:w-[135px] h-[110px] sm:h-[130px] pointer-events-none select-none z-20">
+        <Image
+          src="/assets/templates/romantic-garden/floral-corner-br.webp"
+          alt="Esquina floral inferior derecha"
+          width={1284}
+          height={1225}
+          className="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
+        />
+      </div>
+
+      <div className="relative z-10 space-y-4 pt-6 pb-7">
         <div>
           <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.28em] text-[#8C6D37] uppercase font-semibold">
             CÓDIGO DE VESTIMENTA
@@ -35,13 +71,13 @@ export default function Section05Dresscode({ settings }: Props) {
           </h2>
         </div>
 
-        {/* Fotografía editorial de la pareja de gala más compacta */}
-        <div className="w-full max-w-[240px] h-48 sm:h-52 mx-auto relative rounded-2xl overflow-hidden shadow-md border-2 border-[#C8A569]/50">
+        {/* Fotografía editorial de los novios de gala */}
+        <div className="w-full max-w-[250px] h-52 sm:h-56 mx-auto relative rounded-2xl overflow-hidden shadow-md border-2 border-[#C8A569]/50">
           <Image
-            src="/images/assets/dresscode-couple.webp"
-            alt="Pareja de gala"
+            src="/images/assets/dresscode-novios.webp"
+            alt="Daren y Fabiola"
             fill
-            sizes="240px"
+            sizes="250px"
             className="object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#08192D]/85 via-transparent to-transparent" />
@@ -52,7 +88,7 @@ export default function Section05Dresscode({ settings }: Props) {
           </div>
         </div>
 
-        <p className="font-serif italic text-xs sm:text-[13px] text-[#2D3A4B] max-w-xs mx-auto leading-relaxed">
+        <p className="font-serif italic text-[14px] sm:text-[15px] text-[#2D3A4B] max-w-xs mx-auto leading-relaxed">
           {settings.dresscode_description ||
             "Nos encantaría que nos acompañaras luciendo tu mejor atuendo para celebrar juntos una noche llena de amor, alegría y elegancia."}
         </p>
@@ -69,7 +105,7 @@ export default function Section05Dresscode({ settings }: Props) {
           <h4 className="font-cinzel text-xs tracking-widest text-[#8C6D37] uppercase font-bold">
             COLORES RESERVADOS PARA LOS NOVIOS
           </h4>
-          <p className="font-serif text-[11px] sm:text-xs text-[#4A5568] max-w-xs mx-auto">
+          <p className="font-serif text-[13px] sm:text-[14px] text-[#4A5568] max-w-xs mx-auto">
             Agradecemos cordialmente evitar los siguientes tonos reservados para la novia y el cortejo:
           </p>
 
@@ -97,7 +133,7 @@ export default function Section05Dresscode({ settings }: Props) {
             ))}
           </div>
 
-          <p className="font-serif italic text-[11px] text-[#718096] pt-1">
+          <p className="font-serif italic text-[13px] text-[#718096] pt-1">
             Gracias por ayudarnos a cuidar la armonía estética de nuestra noche.
           </p>
         </div>
