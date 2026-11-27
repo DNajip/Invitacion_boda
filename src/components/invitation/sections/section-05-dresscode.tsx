@@ -63,7 +63,7 @@ export default function Section05Dresscode({ settings }: Props) {
 
       <div className="relative z-10 space-y-4 pt-6 pb-10 sm:pb-12">
         <div>
-          <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.28em] text-[#8C6D37] uppercase font-semibold">
+          <p className="font-cinzel text-[12px] sm:text-[13px] tracking-[0.28em] text-[#8C6D37] uppercase font-semibold">
             CÓDIGO DE VESTIMENTA
           </p>
           <h2 className="font-serif italic font-normal text-3xl sm:text-4xl text-[#0E1A29] tracking-wide mt-0.5">
@@ -92,7 +92,7 @@ export default function Section05Dresscode({ settings }: Props) {
           </div>
         </div>
 
-        <p className="font-serif italic text-[14px] sm:text-[15px] text-[#2D3A4B] max-w-xs sm:max-w-sm mx-auto leading-relaxed pt-2">
+        <p className="font-serif italic text-[16px] sm:text-[17px] text-[#2D3A4B] max-w-xs sm:max-w-sm mx-auto leading-relaxed pt-2">
           {settings.dresscode_description ||
             "Nos encantaría que nos acompañaras luciendo tu mejor atuendo para celebrar juntos una noche llena de amor, alegría y elegancia."}
         </p>
@@ -106,10 +106,10 @@ export default function Section05Dresscode({ settings }: Props) {
 
         {/* Colores reservados */}
         <div className="space-y-2 pt-0.5">
-          <h4 className="font-cinzel text-xs tracking-widest text-[#8C6D37] uppercase font-bold">
+          <h4 className="font-cinzel text-[14px] tracking-widest text-[#8C6D37] uppercase font-bold">
             COLORES RESERVADOS PARA LOS NOVIOS
           </h4>
-          <p className="font-serif text-[13px] sm:text-[14px] text-[#4A5568] max-w-xs mx-auto">
+          <p className="font-serif text-[15px] sm:text-[16px] text-[#4A5568] max-w-xs sm:max-w-sm mx-auto leading-relaxed">
             Agradecemos cordialmente evitar los siguientes tonos reservados para la novia y el cortejo:
           </p>
 
