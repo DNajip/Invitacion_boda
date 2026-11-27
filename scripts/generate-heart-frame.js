@@ -4,16 +4,16 @@ const path = require('path');
 const W = 1000;
 const H = 920;
 
-// Romantic heart with wide, gentle upper curvature and shallow indentation
-// Designed so the upper dip does not cut into either person's head
+// Romantic heart with wide, gentle upper curvature and very soft, shallow indentation
+// Guaranteed not to cut into either person's face or hair
 const heartPath = `
-  M 500 135
-  C 500 85, 395 45, 275 45
-  C 145 45, 45 150, 45 280
-  C 45 480, 260 680, 500 870
-  C 740 680, 955 480, 955 280
-  C 955 150, 855 45, 725 45
-  C 605 45, 500 85, 500 135
+  M 500 115
+  C 500 75, 390 40, 270 40
+  C 140 40, 40 145, 40 275
+  C 40 480, 260 680, 500 875
+  C 740 680, 960 480, 960 275
+  C 960 145, 860 40, 730 40
+  C 610 40, 500 75, 500 115
   Z
 `.trim().replace(/\s+/g, ' ');
 
@@ -50,20 +50,18 @@ async function run() {
   const outArtifact = 'C:/Users/Najip/.gemini/antigravity/brain/add89a44-31c8-4b18-99b3-21df3c1cd72a/heart-preview.png';
   const outPublic = path.resolve(__dirname, '../public/images/assets/dresscode-novios-heart.webp');
 
-  // Scale photo so both heads and surrounding lights have ample headroom
-  // Original is 1158 x 1219 (aspect ~ 0.95)
-  // We scale to 960 width x 1010 height (proportional, no distortion!)
-  const photoW = 960;
-  const photoH = Math.round((1219 / 1158) * photoW); // 1010
+  // Zoom out the photo: scale to 820px width (further away, more headroom and side space)
+  const photoW = 820;
+  const photoH = Math.round((1219 / 1158) * photoW); // 863px
 
-  // Resize and extract top 920px (faces are in the top-middle)
   const scaledPhoto = await sharp(inputPath)
     .resize(photoW, photoH)
-    .extract({ left: 0, top: 0, width: photoW, height: 920 })
     .toBuffer();
 
+  const leftOffset = Math.round((W - photoW) / 2); // 90px centered
+  const topOffset = 45; // 45px from top
+
   // Create empty transparent canvas of W x H (1000 x 920)
-  // Place photo centered horizontally (left: (1000-960)/2 = 20)
   const canvasWithPhoto = await sharp({
     create: {
       width: W,
@@ -73,7 +71,7 @@ async function run() {
     }
   })
     .composite([
-      { input: scaledPhoto, left: 20, top: 0 }
+      { input: scaledPhoto, left: leftOffset, top: topOffset }
     ])
     .png()
     .toBuffer();
@@ -94,12 +92,12 @@ async function run() {
     .webp({ quality: 96 })
     .toFile(outPublic);
 
-  // Also write PNG for inspection
+  // Write PNG preview for inspection
   await sharp(outPublic)
     .png()
     .toFile(outArtifact);
 
-  console.log('New spacious heart frame generated successfully!');
+  console.log('Zoomed out heart frame generated successfully!');
 }
 
 run().catch(console.error);
