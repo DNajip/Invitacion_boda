@@ -91,7 +91,7 @@ export default function RsvpSection({
       </div>
 
       <div className="relative z-10 space-y-2 pt-8 pb-1">
-        <p className="font-cinzel text-[8.5px] sm:text-[9px] tracking-[0.15em] text-[#C8A569] uppercase font-semibold">
+        <p className="font-cinzel text-[10.5px] sm:text-[11px] tracking-[0.15em] text-[#C8A569] uppercase font-semibold">
           CONFIRMACIÓN DE ASISTENCIA
         </p>
 
@@ -110,12 +110,12 @@ export default function RsvpSection({
           ¿Nos Acompañarás?
         </h2>
 
-        <p className="font-serif italic text-[11.5px] sm:text-xs text-[#E1D3BF] max-w-xs mx-auto leading-snug">
+        <p className="font-serif italic text-[13.5px] sm:text-[14px] text-[#E1D3BF] max-w-xs mx-auto leading-relaxed">
           Por favor confirma la asistencia de cada una de las personas autorizadas en tu invitación.
         </p>
 
         {rsvpDeadlineString && (
-          <p className="font-cinzel text-[9px] text-[#E5C388] font-semibold tracking-wider">
+          <p className="font-cinzel text-[11px] text-[#E5C388] font-semibold tracking-wider">
             FECHA LÍMITE:{" "}
             {new Date(rsvpDeadlineString).toLocaleDateString("es-ES", {
               day: "numeric",

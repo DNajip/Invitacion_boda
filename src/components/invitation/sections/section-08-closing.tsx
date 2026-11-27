@@ -37,7 +37,7 @@ export default function Section08Closing({ groom, bride, onScrollToTop }: Props)
           Gracias por ser parte de nuestra historia
         </h2>
 
-        <div className="space-y-2.5 max-w-xs mx-auto font-serif italic text-xs sm:text-[13px] text-[#E1D3BF] leading-relaxed">
+        <div className="space-y-2.5 max-w-sm mx-auto font-serif italic text-[14px] sm:text-[15px] text-[#E1D3BF] leading-relaxed">
           <p>
             El amor se hace aún más especial cuando se comparte con las personas que forman parte de nuestra vida.
           </p>
@@ -60,7 +60,7 @@ export default function Section08Closing({ groom, bride, onScrollToTop }: Props)
           <p className="font-serif italic font-medium text-3xl sm:text-4xl text-[#E5C388] tracking-wider">
             {groom} y {bride}
           </p>
-          <p className="font-cinzel text-[11px] text-[#C8A569] tracking-[0.25em] pt-1">
+          <p className="font-cinzel text-[13px] text-[#C8A569] tracking-[0.25em] pt-1 font-medium">
             19 · 12 · 2026
           </p>
         </div>
