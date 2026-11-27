@@ -9,7 +9,7 @@ interface Props {
 
 export default function Section04Details({ settings }: Props) {
   return (
-    <section className="relative w-full max-w-[440px] mx-auto rounded-[32px] bg-gradient-to-b from-[#081729] via-[#0E2035] to-[#081729] p-6 sm:p-8 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#C8A569]/40 overflow-hidden text-white">
+    <section className="relative w-full max-w-[440px] mx-auto rounded-[32px] bg-gradient-to-b from-[#081729] via-[#0E2035] to-[#081729] p-4 sm:p-5 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#C8A569]/40 overflow-hidden text-white">
       {/* Filetes dorados dobles */}
       <div className="absolute inset-[8px] rounded-[24px] border border-[#C8A569]/30 pointer-events-none z-10" />
       <div className="absolute inset-[13px] rounded-[19px] border border-[#C8A569]/15 pointer-events-none z-10" />
@@ -61,7 +61,7 @@ export default function Section04Details({ settings }: Props) {
         />
       </div>
 
-      <div className="relative z-10 space-y-7 pt-9 pb-5">
+      <div className="relative z-10 space-y-4 pt-6 pb-2">
         <div>
           <p className="font-cinzel text-[10px] sm:text-[11px] tracking-[0.25em] text-[#C8A569] uppercase font-semibold">
             INFORMACIÓN IMPORTANTE
@@ -72,17 +72,17 @@ export default function Section04Details({ settings }: Props) {
         </div>
 
         {/* 1. SOLO ADULTOS — CON COPAS DE CHAMPAÑA FOTORREALISTAS */}
-        <div className="bg-[#0A1D33]/90 border border-[#C8A569]/35 rounded-2xl p-5 shadow-md space-y-3 backdrop-blur-sm">
-          <div className="w-24 h-24 mx-auto relative drop-shadow-md">
+        <div className="bg-[#0A1D33]/90 border border-[#C8A569]/35 rounded-2xl p-4 sm:p-4.5 shadow-md space-y-2 backdrop-blur-sm">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto relative drop-shadow-md">
             <Image
               src="/assets/templates/romantic-garden/champagne-glasses.webp"
               alt="Copas de champaña"
               fill
-              sizes="96px"
+              sizes="80px"
               className="object-contain"
             />
           </div>
-          <h3 className="font-serif italic font-bold text-xl text-white">
+          <h3 className="font-serif italic font-bold text-lg sm:text-xl text-white">
             {settings.special_adults_title || "Una velada solo para adultos"}
           </h3>
           <p className="font-serif text-[14px] sm:text-[15px] text-[#E1D3BF] max-w-sm mx-auto leading-relaxed">
@@ -92,36 +92,36 @@ export default function Section04Details({ settings }: Props) {
         </div>
 
         {/* Separador rombo */}
-        <div className="flex items-center justify-center gap-2">
-          <div className="w-16 h-px bg-[#C8A569]/40" />
-          <div className="w-2 h-2 rotate-45 border border-[#C8A569] bg-[#0E2035]" />
-          <div className="w-16 h-px bg-[#C8A569]/40" />
+        <div className="flex items-center justify-center gap-2 py-0.5">
+          <div className="w-12 h-px bg-[#C8A569]/40" />
+          <div className="w-1.5 h-1.5 rotate-45 border border-[#C8A569] bg-[#0E2035]" />
+          <div className="w-12 h-px bg-[#C8A569]/40" />
         </div>
 
         {/* 2. LLUVIA DE SOBRES — CON BUZÓN DE REGALOS Y SOBRES BLANCOS FOTORREALISTAS */}
-        <div className="bg-[#0A1D33]/90 border border-[#C8A569]/35 rounded-2xl p-5 shadow-md space-y-3 backdrop-blur-sm">
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-24 h-24 relative drop-shadow-md">
+        <div className="bg-[#0A1D33]/90 border border-[#C8A569]/35 rounded-2xl p-4 sm:p-4.5 shadow-md space-y-2 backdrop-blur-sm">
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 relative drop-shadow-md">
               <Image
                 src="/assets/templates/romantic-garden/gift-mailbox.webp"
                 alt="Buzón de regalos de cristal"
                 fill
-                sizes="96px"
+                sizes="80px"
                 className="object-contain"
               />
             </div>
-            <div className="w-24 h-20 relative drop-shadow-md -ml-4">
+            <div className="w-16 h-14 sm:w-20 sm:h-16 relative drop-shadow-md -ml-3">
               <Image
                 src="/assets/templates/romantic-garden/white-envelopes.webp"
                 alt="Sobres blancos con sello"
                 fill
-                sizes="96px"
+                sizes="80px"
                 className="object-contain"
               />
             </div>
           </div>
 
-          <h3 className="font-serif italic font-bold text-xl text-white">
+          <h3 className="font-serif italic font-bold text-lg sm:text-xl text-white">
             {settings.special_envelope_title || "Lluvia de sobres"}
           </h3>
           <p className="font-serif text-[14px] sm:text-[15px] text-[#E1D3BF] max-w-sm mx-auto leading-relaxed">
